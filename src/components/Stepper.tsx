@@ -34,7 +34,7 @@ export function Stepper({ current }: { current: StepId }) {
           >
             <span
               className={[
-                "text-[11px] font-bold tabular tracking-widest",
+                "text-[13px] font-bold tabular tracking-widest",
                 active ? "text-aa-red" : "text-aa-muted",
               ].join(" ")}
             >
@@ -42,7 +42,7 @@ export function Stepper({ current }: { current: StepId }) {
             </span>
             <span
               className={[
-                "hidden truncate text-[13px] font-medium tracking-wide sm:block",
+                "hidden truncate text-[15px] font-medium tracking-wide sm:block",
                 active ? "text-aa-ink" : "text-aa-muted",
               ].join(" ")}
             >

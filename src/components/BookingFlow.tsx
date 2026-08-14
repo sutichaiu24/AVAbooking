@@ -316,7 +316,7 @@ function BackLink({ label, onClick }: { label: string; onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider text-aa-muted transition-colors hover:text-aa-ink"
+      className="group inline-flex items-center gap-2 text-[15px] font-bold uppercase tracking-wider text-aa-muted transition-colors hover:text-aa-ink"
     >
       <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" aria-hidden />
       {label}

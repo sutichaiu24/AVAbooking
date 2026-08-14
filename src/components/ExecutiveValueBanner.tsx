@@ -59,7 +59,7 @@ export function ExecutiveValueBanner() {
                   <dd className="text-[16px] font-bold tabular leading-none tracking-tight text-aa-red">
                     {metric.figure}
                   </dd>
-                  <dt className="mt-1.5 text-[11px] font-medium tracking-wide text-aa-muted">
+                  <dt className="mt-1.5 text-[13px] font-medium tracking-wide text-aa-muted">
                     {metric.label}
                   </dt>
                 </div>
@@ -71,7 +71,7 @@ export function ExecutiveValueBanner() {
             type="button"
             onClick={() => setExpanded((v) => !v)}
             aria-expanded={expanded}
-            className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider text-aa-graphite lg:hidden"
+            className="flex items-center gap-2 text-[15px] font-bold uppercase tracking-wider text-aa-graphite lg:hidden"
           >
             <span className="text-aa-red">0%</span> ค่าธรรมเนียมข้ามประเทศ
             <ChevronDown
@@ -85,11 +85,11 @@ export function ExecutiveValueBanner() {
           <dl className="animate-aa-rise space-y-5 border-t border-aa-border py-5 lg:hidden">
             {METRICS.map((metric) => (
               <div key={metric.label}>
-                <dd className="text-[19px] font-bold tabular leading-none tracking-tight text-aa-red">
+                <dd className="text-[20px] font-bold tabular leading-none tracking-tight text-aa-red">
                   {metric.figure}
                 </dd>
-                <dt className="mt-1.5 text-[13px] font-medium text-aa-ink">{metric.label}</dt>
-                <dd className="mt-1 text-[13px] font-light leading-relaxed text-aa-muted">
+                <dt className="mt-1.5 text-[15px] font-medium text-aa-ink">{metric.label}</dt>
+                <dd className="mt-1 text-[15px] font-light leading-relaxed text-aa-muted">
                   {metric.detail}
                 </dd>
               </div>
@@ -121,7 +121,7 @@ function Wordmark() {
       />
       <span className="leading-none">
         <span className="block text-[16px] font-bold tracking-tight text-aa-ink">AirAsia</span>
-        <span className="mt-1 block text-[10px] font-medium uppercase tracking-widest text-aa-muted">
+        <span className="mt-1 block text-[12px] font-medium uppercase tracking-widest text-aa-muted">
           ไทยแอร์เอเชีย
         </span>
       </span>

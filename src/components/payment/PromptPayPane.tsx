@@ -151,10 +151,10 @@ export function PromptPayPane({ amount, onSettled }: Props) {
         <div className="relative overflow-hidden border border-aa-border bg-white p-4 ">
           {/* PromptPay brand strip, as printed on merchant-presented codes. */}
           <div className="-m-4 mb-4 bg-aa-hero px-4 py-2.5 text-center">
-            <p className="text-[13px] font-medium uppercase tracking-[0.25em] text-white">
+            <p className="text-[15px] font-medium uppercase tracking-[0.25em] text-white">
               PromptPay
             </p>
-            <p className="text-[11px] text-white/60">พร้อมเพย์</p>
+            <p className="text-[13px] text-white/60">พร้อมเพย์</p>
           </div>
 
           <div className="relative">
@@ -192,9 +192,9 @@ export function PromptPayPane({ amount, onSettled }: Props) {
           </div>
 
           <div className="mt-3 border-t border-dashed border-aa-border pt-3 text-center">
-            <p className="text-[11px] uppercase tracking-wide text-aa-muted">ยอดชำระ</p>
+            <p className="text-[13px] uppercase tracking-wide text-aa-muted">ยอดชำระ</p>
             <p className="text-2xl font-medium tabular text-aa-crimson">{thb(amount)}</p>
-            <p className="mt-1 text-[11px] text-aa-muted">
+            <p className="mt-1 text-[13px] text-aa-muted">
               อ้างอิง <span className="tabular font-semibold">{intent.ref}</span>
             </p>
           </div>
@@ -223,7 +223,7 @@ export function PromptPayPane({ amount, onSettled }: Props) {
             "ยืนยันการโอน ระบบจะตรวจสอบและออกบัตรโดยสารให้อัตโนมัติ",
           ].map((step, index) => (
             <li key={step} className="flex gap-3 text-xs leading-relaxed text-aa-muted">
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-aa-tint text-[13px] font-bold text-aa-crimson">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-aa-tint text-[15px] font-bold text-aa-crimson">
                 {index + 1}
               </span>
               {step}
@@ -241,10 +241,10 @@ export function PromptPayPane({ amount, onSettled }: Props) {
         />
 
         <details className="mt-3 border border-aa-border bg-white p-3">
-          <summary className="cursor-pointer text-[13px] font-semibold text-aa-crimson">
+          <summary className="cursor-pointer text-[15px] font-semibold text-aa-crimson">
             ดู EMVCo payload ที่เข้ารหัสอยู่ในรหัส QR นี้
           </summary>
-          <p className="mt-2 break-all font-mono text-[11px] leading-relaxed text-aa-muted">
+          <p className="mt-2 break-all font-mono text-[13px] leading-relaxed text-aa-muted">
             {intent.qrPayload}
           </p>
         </details>

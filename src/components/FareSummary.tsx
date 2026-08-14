@@ -17,20 +17,20 @@ export function FareSummary({ flight, quote }: { flight: FlightOption; quote: Fa
       <div className="border-t-2 border-aa-ink pt-5">
         <p className="aa-eyebrow">สรุปราคา</p>
 
-        <p className="mt-4 text-[19px] font-light tracking-tight">
+        <p className="mt-4 text-[20px] font-light tracking-tight">
           {AIRPORTS[flight.origin].cityTh}
           <span className="mx-2.5 text-aa-muted">—</span>
           {AIRPORTS[flight.destination].cityTh}
         </p>
-        <p className="mt-1.5 text-[13px] font-light text-aa-muted">
+        <p className="mt-1.5 text-[15px] font-light text-aa-muted">
           {flight.flightNo} · {thaiDate(flight.departAt)} · {clockTime(flight.departAt)}–
           {clockTime(flight.arriveAt)}
         </p>
-        <p className="mt-3 text-[13px] font-medium text-aa-ink">
+        <p className="mt-3 text-[15px] font-medium text-aa-ink">
           {brand.name} · {quote.pax} ท่าน
         </p>
 
-        <dl className="mt-6 divide-y divide-aa-border border-t border-aa-border text-[14px]">
+        <dl className="mt-6 divide-y divide-aa-border border-t border-aa-border text-[16px]">
           <Line
             label={`ค่าโดยสาร (${thb(quote.baseFarePerPax)} × ${quote.pax})`}
             value={thb(quote.baseFareTotal)}
@@ -44,12 +44,12 @@ export function FareSummary({ flight, quote }: { flight: FlightOption; quote: Fa
         </dl>
 
         <div className="mt-4 flex items-baseline justify-between gap-4 border-t-2 border-aa-ink pt-4">
-          <dt className="text-[14px] font-bold uppercase tracking-wider">ยอดชำระทั้งสิ้น</dt>
-          <dd className="text-[30px] font-light tabular leading-none tracking-tight">
+          <dt className="text-[16px] font-bold uppercase tracking-wider">ยอดชำระทั้งสิ้น</dt>
+          <dd className="text-[32px] font-light tabular leading-none tracking-tight">
             {thb(quote.total)}
           </dd>
         </div>
-        <p className="mt-3 text-[11px] font-light leading-relaxed text-aa-muted">
+        <p className="mt-3 text-[13px] font-light leading-relaxed text-aa-muted">
           เรียกเก็บเป็นสกุลเงินบาท (THB) โดย {MERCHANT.legalNameTh}
         </p>
 
@@ -62,12 +62,12 @@ export function FareSummary({ flight, quote }: { flight: FlightOption; quote: Fa
 function SavingsCallout({ quote }: { quote: FareQuote }) {
   return (
     <div className="mt-8 border-l-2 border-aa-success pl-4">
-      <p className="text-[14px] font-bold text-aa-success">
+      <p className="text-[16px] font-bold text-aa-success">
         ประหยัดได้ {thb(quote.savings.total)}
       </p>
-      <p className="mt-0.5 text-[11px] font-light text-aa-muted">จากการชำระในประเทศ</p>
+      <p className="mt-0.5 text-[13px] font-light text-aa-muted">จากการชำระในประเทศ</p>
 
-      <dl className="mt-3 space-y-1.5 text-[13px] font-light">
+      <dl className="mt-3 space-y-1.5 text-[15px] font-light">
         <div className="flex items-baseline justify-between gap-3">
           <dt className="text-aa-muted">
             ค่าธรรมเนียมบัตรข้ามประเทศ {(CROSS_BORDER_FEE_RATE * 100).toFixed(0)}%
@@ -82,7 +82,7 @@ function SavingsCallout({ quote }: { quote: FareQuote }) {
         </div>
       </dl>
 
-      <p className="mt-4 text-[11px] font-light leading-relaxed text-aa-muted">
+      <p className="mt-4 text-[13px] font-light leading-relaxed text-aa-muted">
         ค่าธรรมเนียมทั้งสองรายการนี้ถูกเรียกเก็บโดยธนาคารผู้ออกบัตร ไม่ใช่สายการบิน
         และจะไม่เกิดขึ้นเมื่อร้านค้าผู้รับชำระจดทะเบียนในประเทศไทย
       </p>

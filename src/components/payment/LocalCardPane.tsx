@@ -83,7 +83,7 @@ export function LocalCardPane({ amount, savedCrossBorderFee, onSettled }: Props)
                 disabled={phase !== "idle"}
                 onChange={(event) => setNumber(formatCardNumber(event.target.value))}
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] font-medium uppercase tracking-wide text-aa-crimson">
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[13px] font-medium uppercase tracking-wide text-aa-crimson">
                 {scheme}
               </span>
             </div>
@@ -140,7 +140,7 @@ export function LocalCardPane({ amount, savedCrossBorderFee, onSettled }: Props)
         </div>
 
         {error && (
-          <p role="alert" className="mt-3 bg-aa-red/10 px-3 py-2 text-[13px] font-semibold text-aa-crimson">
+          <p role="alert" className="mt-3 bg-aa-red/10 px-3 py-2 text-[15px] font-semibold text-aa-crimson">
             {error}
           </p>
         )}
@@ -177,7 +177,7 @@ export function LocalCardPane({ amount, savedCrossBorderFee, onSettled }: Props)
           )}
         </button>
 
-        <p className="mt-3 flex items-start gap-1.5 text-[11px] leading-snug text-aa-muted">
+        <p className="mt-3 flex items-start gap-1.5 text-[13px] leading-snug text-aa-muted">
           <Lock className="mt-px h-3 w-3 shrink-0" aria-hidden />
           ข้อมูลบัตรถูกเข้ารหัสและส่งตรงไปยังผู้ให้บริการรับชำระที่ได้รับการรับรองมาตรฐาน PCI-DSS
           ระดับ 1 ในประเทศไทย สายการบินไม่จัดเก็บหมายเลขบัตรของคุณ
@@ -186,12 +186,12 @@ export function LocalCardPane({ amount, savedCrossBorderFee, onSettled }: Props)
 
       <div>
         <div className="border border-aa-border bg-aa-tint p-4">
-          <p className="flex items-center gap-1.5 text-[13px] font-bold text-aa-crimson">
+          <p className="flex items-center gap-1.5 text-[15px] font-bold text-aa-crimson">
             <CreditCard className="h-3.5 w-3.5 shrink-0" aria-hidden />
             เปรียบเทียบกับการตัดบัตรผ่านร้านค้าต่างประเทศ
           </p>
 
-          <div className="mt-3 space-y-2.5 text-[13px]">
+          <div className="mt-3 space-y-2.5 text-[15px]">
             <CompareRow
               label="ยอดเรียกเก็บบนใบแจ้งหนี้"
               here={thb(amount)}

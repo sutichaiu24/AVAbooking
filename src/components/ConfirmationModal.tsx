@@ -120,7 +120,7 @@ function CommitProgress() {
       <h2 id="confirmation-title" className="mt-4 text-lg font-bold">
         กำลังส่งข้อมูลการจองไปยังระบบสำรองที่นั่ง
       </h2>
-      <p className="mt-1 font-mono text-[13px] text-aa-muted">POST /api/pss/v1/commit-booking</p>
+      <p className="mt-1 font-mono text-[15px] text-aa-muted">POST /api/pss/v1/commit-booking</p>
 
       <ol className="mx-auto mt-6 max-w-md space-y-2.5 text-left">
         {steps.map((step, index) => {
@@ -207,13 +207,13 @@ function Confirmed({
 
         <div className="mt-5 flex flex-wrap items-end justify-between gap-4 bg-white/10 px-4 py-3">
           <div>
-            <p className="text-[11px] uppercase tracking-widest text-white/50">
+            <p className="text-[13px] uppercase tracking-widest text-white/50">
               รหัสการจอง (PNR)
             </p>
             <p className="tabular text-3xl font-medium tracking-wider">{booking.pnr}</p>
           </div>
           <div className="text-right">
-            <p className="text-[11px] uppercase tracking-widest text-white/50">ยอดชำระ</p>
+            <p className="text-[13px] uppercase tracking-widest text-white/50">ยอดชำระ</p>
             <p className="tabular text-xl font-medium">{thb(quote.total)}</p>
           </div>
         </div>
@@ -239,7 +239,7 @@ function Confirmed({
                 </p>
               </div>
             </div>
-            <p className="mt-3 border-t border-aa-border pt-3 text-[13px] text-aa-muted">
+            <p className="mt-3 border-t border-aa-border pt-3 text-[15px] text-aa-muted">
               {flight.flightNo} · {thaiDate(flight.departAt)} · {flight.aircraft} ·{" "}
               {FARE_BRANDS[quote.brand].name}
             </p>
@@ -250,9 +250,9 @@ function Confirmed({
         <section>
           <SectionHeading icon={CheckCircle2} title="บัตรโดยสารอิเล็กทรอนิกส์" />
           <div className="mt-2.5 overflow-x-auto">
-            <table className="w-full min-w-[440px] text-left text-[13px]">
+            <table className="w-full min-w-[440px] text-left text-[15px]">
               <thead>
-                <tr className="border-b border-aa-border text-[11px] uppercase tracking-wide text-aa-muted">
+                <tr className="border-b border-aa-border text-[13px] uppercase tracking-wide text-aa-muted">
                   <th className="pb-1.5 font-semibold">ผู้โดยสาร</th>
                   <th className="pb-1.5 font-semibold">เลขที่บัตรโดยสาร</th>
                   <th className="pb-1.5 font-semibold">ที่นั่ง</th>
@@ -279,7 +279,7 @@ function Confirmed({
             <Sparkles className="h-4 w-4 shrink-0" aria-hidden />
             คุณประหยัดค่าธรรมเนียมไป {thb(quote.savings.total)} จากการชำระเงินในประเทศ
           </p>
-          <dl className="mt-3 space-y-1.5 text-[13px]">
+          <dl className="mt-3 space-y-1.5 text-[15px]">
             <SaveRow
               label={`ค่าธรรมเนียมบัตรข้ามประเทศ ${(CROSS_BORDER_FEE_RATE * 100).toFixed(0)}%`}
               value={thb(quote.savings.crossBorderFee)}
@@ -300,7 +300,7 @@ function Confirmed({
         {/* Settlement + PSS trace */}
         <section>
           <SectionHeading icon={Landmark} title="การรับชำระเงินและการเชื่อมต่อระบบส่วนกลาง" />
-          <dl className="mt-2.5 space-y-1.5 border border-aa-border p-4 text-[13px]">
+          <dl className="mt-2.5 space-y-1.5 border border-aa-border p-4 text-[15px]">
             <InfoRow label="ผู้รับชำระเงิน (Merchant of Record)" value={settlement.entityTh} />
             <InfoRow label="Merchant ID" value={settlement.merchantId} />
             <InfoRow label="ผู้ให้บริการรับชำระ" value={settlement.acquirer} />

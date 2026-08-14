@@ -54,8 +54,8 @@ export function PaymentPanel({ quote, onSettled, disabled = false }: Props) {
   return (
     <section>
       <header className="border-b border-aa-border pb-4">
-        <h2 className="text-[26px] font-light tracking-tight">เลือกวิธีชำระเงิน</h2>
-        <p className="mt-2 max-w-2xl text-[13px] font-light leading-relaxed text-aa-muted">
+        <h2 className="text-[28px] font-light tracking-tight">เลือกวิธีชำระเงิน</h2>
+        <p className="mt-2 max-w-2xl text-[15px] font-light leading-relaxed text-aa-muted">
           ทุกช่องทางเรียกเก็บเป็นเงินบาทและรับชำระโดยนิติบุคคลในประเทศไทย
           ผู้ถือบัตรไทยจึงไม่ถูกเรียกเก็บค่าธรรมเนียมข้ามประเทศ
         </p>
@@ -89,20 +89,20 @@ export function PaymentPanel({ quote, onSettled, disabled = false }: Props) {
                     <span className="flex flex-wrap items-baseline gap-3">
                       <span className="text-[16px] font-medium">{method.nameTh}</span>
                       {method.recommended && (
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-aa-success">
+                        <span className="text-[12px] font-bold uppercase tracking-widest text-aa-success">
                           <Sparkles className="mr-1 inline h-2.5 w-2.5" aria-hidden />
                           ยืนยันทันที
                         </span>
                       )}
                     </span>
-                    <span className="mt-1 block text-[13px] font-light leading-relaxed text-aa-muted">
+                    <span className="mt-1 block text-[15px] font-light leading-relaxed text-aa-muted">
                       {method.blurb}
                     </span>
                   </span>
 
                   <span className="hidden shrink-0 text-right sm:block">
                     <span className="aa-eyebrow block">Settlement</span>
-                    <span className="mt-1 block text-[13px] font-medium text-aa-graphite">
+                    <span className="mt-1 block text-[15px] font-medium text-aa-graphite">
                       {method.settlementDays}
                     </span>
                   </span>
@@ -167,7 +167,7 @@ export function PaymentPanel({ quote, onSettled, disabled = false }: Props) {
 
       <footer className="flex flex-wrap items-baseline justify-between gap-3 py-5">
         <span className="aa-eyebrow">ยอดที่ต้องชำระ</span>
-        <span className="text-[27px] font-light tabular leading-none tracking-tight">
+        <span className="text-[29px] font-light tabular leading-none tracking-tight">
           {thb(quote.total)}
         </span>
       </footer>

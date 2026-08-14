@@ -51,16 +51,16 @@
 
   /* Small uppercase label — the workhorse of the whole type system. */
   .aa-eyebrow {
-    @apply text-[11px] font-bold uppercase tracking-widest text-aa-muted;
+    @apply text-[13px] font-bold uppercase tracking-widest text-aa-muted;
   }
 
   .aa-chip {
-    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-[13px] font-bold uppercase tracking-wide;
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-[15px] font-bold uppercase tracking-wide;
   }
 
   .aa-btn-primary {
     @apply inline-flex items-center justify-center gap-2.5 bg-aa-red px-8 py-4
-      text-[14px] font-bold uppercase tracking-wider text-white transition-colors
+      text-[16px] font-bold uppercase tracking-wider text-white transition-colors
       hover:bg-aa-crimson focus-visible:outline focus-visible:outline-2
       focus-visible:outline-offset-2 focus-visible:outline-aa-red
       disabled:cursor-not-allowed disabled:bg-aa-mist disabled:text-aa-muted;
@@ -68,7 +68,7 @@
 
   .aa-btn-ghost {
     @apply inline-flex items-center justify-center gap-2 border border-aa-rule
-      bg-transparent px-6 py-3.5 text-[14px] font-bold uppercase tracking-wider
+      bg-transparent px-6 py-3.5 text-[16px] font-bold uppercase tracking-wider
       text-aa-ink transition-colors hover:border-aa-ink focus-visible:outline
       focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-aa-red;
   }
@@ -97,7 +97,7 @@
   }
 
   .aa-label {
-    @apply mb-1 block text-[11px] font-bold uppercase tracking-widest text-aa-muted;
+    @apply mb-1 block text-[13px] font-bold uppercase tracking-widest text-aa-muted;
   }
 
   /* Tabular row used by every settlement / breakdown list. */

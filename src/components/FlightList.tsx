@@ -20,12 +20,12 @@ export function FlightList({ result, selectedFlightId, selectedBrand, onSelect }
   return (
     <section>
       <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-aa-border pb-4">
-        <h2 className="text-[26px] font-light tracking-tight">
+        <h2 className="text-[28px] font-light tracking-tight">
           {AIRPORTS[query.origin].cityTh}
           <span className="mx-3 text-aa-muted">—</span>
           {AIRPORTS[query.destination].cityTh}
         </h2>
-        <p className="text-[13px] font-light text-aa-muted">
+        <p className="text-[15px] font-light text-aa-muted">
           {flights.length} เที่ยวบิน · ตอบกลับใน {result.latencyMs} มิลลิวินาที
         </p>
       </div>
@@ -62,45 +62,45 @@ function FlightRow({
         {/* Schedule */}
         <div>
           <div className="flex items-baseline gap-3">
-            <span className="text-[13px] font-bold tracking-wider text-aa-red">
+            <span className="text-[15px] font-bold tracking-wider text-aa-red">
               {flight.flightNo}
             </span>
-            <span className="text-[13px] font-light text-aa-muted">{flight.aircraft}</span>
+            <span className="text-[15px] font-light text-aa-muted">{flight.aircraft}</span>
           </div>
 
           <div className="mt-4 flex items-baseline gap-5">
             <div>
-              <p className="text-[30px] font-light tabular leading-none tracking-tight">
+              <p className="text-[32px] font-light tabular leading-none tracking-tight">
                 {clockTime(flight.departAt)}
               </p>
-              <p className="mt-2 text-[13px] font-medium tracking-wider text-aa-muted">
+              <p className="mt-2 text-[15px] font-medium tracking-wider text-aa-muted">
                 {flight.origin}
               </p>
             </div>
 
             <div className="flex-1 pb-1">
-              <p className="text-center text-[11px] font-light tracking-wide text-aa-muted">
+              <p className="text-center text-[13px] font-light tracking-wide text-aa-muted">
                 {durationTh(flight.durationMin)}
               </p>
               <div className="mt-1.5 flex items-center gap-1.5">
                 <span className="h-px flex-1 bg-aa-rule" />
                 <span className="h-1 w-1 rounded-full bg-aa-red" />
               </div>
-              <p className="mt-1.5 text-center text-[11px] font-light text-aa-muted">บินตรง</p>
+              <p className="mt-1.5 text-center text-[13px] font-light text-aa-muted">บินตรง</p>
             </div>
 
             <div>
-              <p className="text-[30px] font-light tabular leading-none tracking-tight">
+              <p className="text-[32px] font-light tabular leading-none tracking-tight">
                 {clockTime(flight.arriveAt)}
               </p>
-              <p className="mt-2 text-[13px] font-medium tracking-wider text-aa-muted">
+              <p className="mt-2 text-[15px] font-medium tracking-wider text-aa-muted">
                 {flight.destination}
               </p>
             </div>
           </div>
 
           {flight.seatsLeft <= 12 && (
-            <p className="mt-4 text-[11px] font-bold uppercase tracking-wider text-aa-red">
+            <p className="mt-4 text-[13px] font-bold uppercase tracking-wider text-aa-red">
               เหลือ {flight.seatsLeft} ที่นั่ง
             </p>
           )}
@@ -132,7 +132,7 @@ function FlightRow({
                   <div className="flex items-start justify-between gap-2">
                     <p
                       className={[
-                        "text-[13px] font-bold uppercase tracking-wider",
+                        "text-[15px] font-bold uppercase tracking-wider",
                         active ? "text-white" : "text-aa-ink",
                       ].join(" ")}
                     >
@@ -142,7 +142,7 @@ function FlightRow({
                   </div>
                   <p
                     className={[
-                      "mt-1.5 text-[13px] font-light",
+                      "mt-1.5 text-[15px] font-light",
                       active ? "text-white/55" : "text-aa-muted",
                     ].join(" ")}
                   >
@@ -154,13 +154,13 @@ function FlightRow({
                 <div>
                   <p
                     className={[
-                      "text-[10px] font-bold uppercase tracking-widest",
+                      "text-[12px] font-bold uppercase tracking-widest",
                       active ? "text-white/40" : "text-aa-muted",
                     ].join(" ")}
                   >
                     รวม {pax} ท่าน
                   </p>
-                  <p className="mt-1 text-[26px] font-light tabular leading-none tracking-tight">
+                  <p className="mt-1 text-[34px] font-light tabular leading-none tracking-tight">
                     {thb(quote.total)}
                   </p>
                 </div>
@@ -175,7 +175,7 @@ function FlightRow({
           <p className="aa-eyebrow">รวมอยู่ใน {FARE_BRANDS[selectedBrand].name}</p>
           <ul className="mt-2.5 flex flex-wrap gap-x-7 gap-y-1.5">
             {FARE_BRANDS[selectedBrand].inclusions.map((item) => (
-              <li key={item} className="text-[13px] font-light text-aa-graphite">
+              <li key={item} className="text-[15px] font-light text-aa-graphite">
                 {item}
               </li>
             ))}

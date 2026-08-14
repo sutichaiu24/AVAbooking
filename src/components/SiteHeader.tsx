@@ -75,7 +75,7 @@ function Fact({ label, value, sub }: { label: string; value: string; sub: string
     <div className="min-w-0">
       <dt className="aa-eyebrow text-white/40">{label}</dt>
       <dd className="mt-2.5 text-[16px] font-medium tracking-tight text-white">{value}</dd>
-      <dd className="mt-0.5 text-[13px] font-light text-white/45">{sub}</dd>
+      <dd className="mt-0.5 text-[15px] font-light text-white/45">{sub}</dd>
     </div>
   );
 }

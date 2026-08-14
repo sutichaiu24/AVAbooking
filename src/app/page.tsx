@@ -59,7 +59,7 @@ function ArchitectureStrip() {
     <section className="border-t border-aa-border bg-aa-tint">
       <div className="mx-auto max-w-6xl px-6 py-24">
         <p className="aa-eyebrow">Architecture</p>
-        <h2 className="mt-5 max-w-2xl text-[30px] font-light leading-snug tracking-tight sm:text-[34px]">
+        <h2 className="mt-5 max-w-2xl text-[32px] font-light leading-snug tracking-tight sm:text-[34px]">
           ชั้นการจองและชำระเงินเฉพาะตลาดไทย ที่วางทับระบบเดิมโดยไม่ต้องเปลี่ยนระบบหลัก
         </h2>
 
@@ -68,8 +68,8 @@ function ArchitectureStrip() {
         <div className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((pillar) => (
             <article key={pillar.title} className="border-t border-aa-rule pt-5">
-              <h3 className="text-[14px] font-bold tracking-tight">{pillar.title}</h3>
-              <p className="mt-3 text-[13px] font-light leading-[1.9] text-aa-graphite">
+              <h3 className="text-[16px] font-bold tracking-tight">{pillar.title}</h3>
+              <p className="mt-3 text-[15px] font-light leading-[1.9] text-aa-graphite">
                 {pillar.body}
               </p>
             </article>
@@ -83,10 +83,10 @@ function ArchitectureStrip() {
               {flow.map((node, index) => (
                 <li key={node} className="flex flex-1 items-center gap-3">
                   <div className="min-w-0 flex-1">
-                    <span className="block text-[10px] font-bold tabular tracking-widest text-aa-red">
+                    <span className="block text-[12px] font-bold tabular tracking-widest text-aa-red">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="mt-1.5 block text-[13px] font-medium leading-snug text-aa-ink">
+                    <span className="mt-1.5 block text-[15px] font-medium leading-snug text-aa-ink">
                       {node}
                     </span>
                   </div>
@@ -106,8 +106,8 @@ function ArchitectureStrip() {
 function SiteFooter() {
   return (
     <footer className="bg-aa-wine text-white/55">
-      <div className="mx-auto max-w-6xl space-y-3 px-6 py-16 text-[13px] font-light leading-relaxed">
-        <p className="text-[14px] font-medium text-white">{MERCHANT.legalNameTh}</p>
+      <div className="mx-auto max-w-6xl space-y-3 px-6 py-16 text-[15px] font-light leading-relaxed">
+        <p className="text-[16px] font-medium text-white">{MERCHANT.legalNameTh}</p>
         <p>
           เลขประจำตัวผู้เสียภาษี {MERCHANT.taxId} · Merchant ID {MERCHANT.merchantId} ·
           ผู้ให้บริการรับชำระ {MERCHANT.acquirer}

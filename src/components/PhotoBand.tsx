@@ -52,8 +52,8 @@ export function PhotoBand({ file, caption, sub }: Props) {
       />
 
       <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-10">
-        <p className="text-[19px] font-light tracking-tight text-white sm:text-[22px]">{caption}</p>
-        <p className="mt-2 max-w-md text-[13px] font-light leading-relaxed text-white/55">{sub}</p>
+        <p className="text-[20px] font-light tracking-tight text-white sm:text-[22px]">{caption}</p>
+        <p className="mt-2 max-w-md text-[15px] font-light leading-relaxed text-white/55">{sub}</p>
       </div>
     </section>
   );
