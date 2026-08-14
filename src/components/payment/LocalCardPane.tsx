@@ -83,7 +83,7 @@ export function LocalCardPane({ amount, savedCrossBorderFee, onSettled }: Props)
                 disabled={phase !== "idle"}
                 onChange={(event) => setNumber(formatCardNumber(event.target.value))}
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-extrabold uppercase tracking-wide text-aa-crimson">
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-medium uppercase tracking-wide text-aa-crimson">
                 {scheme}
               </span>
             </div>
@@ -140,7 +140,7 @@ export function LocalCardPane({ amount, savedCrossBorderFee, onSettled }: Props)
         </div>
 
         {error && (
-          <p role="alert" className="mt-3 rounded-xl bg-aa-red/10 px-3 py-2 text-[11px] font-semibold text-aa-crimson">
+          <p role="alert" className="mt-3 bg-aa-red/10 px-3 py-2 text-[11px] font-semibold text-aa-crimson">
             {error}
           </p>
         )}
@@ -185,7 +185,7 @@ export function LocalCardPane({ amount, savedCrossBorderFee, onSettled }: Props)
       </div>
 
       <div>
-        <div className="rounded-xl border border-aa-border bg-aa-tint p-4">
+        <div className="border border-aa-border bg-aa-tint p-4">
           <p className="flex items-center gap-1.5 text-[11px] font-bold text-aa-crimson">
             <CreditCard className="h-3.5 w-3.5 shrink-0" aria-hidden />
             เปรียบเทียบกับการตัดบัตรผ่านร้านค้าต่างประเทศ

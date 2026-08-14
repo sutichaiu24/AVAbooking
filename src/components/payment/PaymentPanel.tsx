@@ -52,22 +52,22 @@ export function PaymentPanel({ quote, onSettled, disabled = false }: Props) {
   }
 
   return (
-    <section className="aa-card overflow-hidden">
-      <header className="border-b border-aa-border px-5 py-4">
-        <h2 className="text-base font-bold">เลือกวิธีชำระเงิน</h2>
-        <p className="mt-1 text-xs text-aa-muted">
+    <section>
+      <header className="border-b border-aa-border pb-4">
+        <h2 className="text-[22px] font-light tracking-tight">เลือกวิธีชำระเงิน</h2>
+        <p className="mt-2 max-w-2xl text-[11px] font-light leading-relaxed text-aa-muted">
           ทุกช่องทางเรียกเก็บเป็นเงินบาทและรับชำระโดยนิติบุคคลในประเทศไทย
           ผู้ถือบัตรไทยจึงไม่ถูกเรียกเก็บค่าธรรมเนียมข้ามประเทศ
         </p>
       </header>
 
-      <div className="divide-y divide-aa-border">
+      <div className="divide-y divide-aa-border border-b border-aa-border">
         {PAYMENT_METHODS.map((method) => {
           const Icon = ICONS[method.id];
           const expanded = open === method.id;
 
           return (
-            <div key={method.id} className={expanded ? "bg-aa-tint/40" : "bg-white"}>
+            <div key={method.id}>
               <h3>
                 <button
                   type="button"
@@ -75,38 +75,34 @@ export function PaymentPanel({ quote, onSettled, disabled = false }: Props) {
                   aria-expanded={expanded}
                   aria-controls={`pane-${method.id}`}
                   disabled={disabled}
-                  className="flex w-full items-center gap-3.5 px-5 py-4 text-left transition hover:bg-aa-tint/70 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="group flex w-full items-center gap-5 py-5 text-left transition-colors disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  <span
+                  <Icon
                     className={[
-                      "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition",
-                      expanded ? "bg-aa-cta text-white" : "bg-aa-tint text-aa-crimson",
+                      "h-5 w-5 shrink-0 transition-colors",
+                      expanded ? "text-aa-red" : "text-aa-muted group-hover:text-aa-ink",
                     ].join(" ")}
                     aria-hidden
-                  >
-                    <Icon className="h-5 w-5" />
-                  </span>
+                  />
 
                   <span className="min-w-0 flex-1">
-                    <span className="flex flex-wrap items-center gap-2">
-                      <span className="text-sm font-bold">{method.nameTh}</span>
+                    <span className="flex flex-wrap items-baseline gap-3">
+                      <span className="text-[14px] font-medium">{method.nameTh}</span>
                       {method.recommended && (
-                        <span className="aa-chip bg-aa-success/10 py-0.5 text-[10px] text-aa-success">
-                          <Sparkles className="h-3 w-3" aria-hidden />
-                          แนะนำ · ยืนยันทันที
+                        <span className="text-[9px] font-bold uppercase tracking-widest text-aa-success">
+                          <Sparkles className="mr-1 inline h-2.5 w-2.5" aria-hidden />
+                          ยืนยันทันที
                         </span>
                       )}
                     </span>
-                    <span className="mt-0.5 block text-[11px] leading-snug text-aa-muted">
+                    <span className="mt-1 block text-[11px] font-light leading-relaxed text-aa-muted">
                       {method.blurb}
                     </span>
                   </span>
 
                   <span className="hidden shrink-0 text-right sm:block">
-                    <span className="block text-[10px] uppercase tracking-wide text-aa-muted">
-                      Settlement
-                    </span>
-                    <span className="block text-[11px] font-bold text-aa-success">
+                    <span className="aa-eyebrow block">Settlement</span>
+                    <span className="mt-1 block text-[11px] font-medium text-aa-graphite">
                       {method.settlementDays}
                     </span>
                   </span>
@@ -121,7 +117,7 @@ export function PaymentPanel({ quote, onSettled, disabled = false }: Props) {
               </h3>
 
               {expanded && (
-                <div id={`pane-${method.id}`} className="animate-aa-rise border-t border-aa-border bg-white">
+                <div id={`pane-${method.id}`} className="animate-aa-rise border-t border-aa-border bg-aa-tint">
                   {method.id === "promptpay" && (
                     <PromptPayPane
                       amount={quote.total}
@@ -169,9 +165,11 @@ export function PaymentPanel({ quote, onSettled, disabled = false }: Props) {
         })}
       </div>
 
-      <footer className="flex flex-wrap items-baseline justify-between gap-2 border-t border-aa-border bg-aa-tint px-5 py-3.5">
-        <span className="text-xs font-semibold text-aa-muted">ยอดที่ต้องชำระ</span>
-        <span className="text-xl font-extrabold tabular text-aa-crimson">{thb(quote.total)}</span>
+      <footer className="flex flex-wrap items-baseline justify-between gap-3 py-5">
+        <span className="aa-eyebrow">ยอดที่ต้องชำระ</span>
+        <span className="text-[24px] font-light tabular leading-none tracking-tight">
+          {thb(quote.total)}
+        </span>
       </footer>
     </section>
   );

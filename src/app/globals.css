@@ -8,46 +8,100 @@
   }
 
   body {
-    @apply bg-aa-tint text-aa-ink antialiased;
+    @apply bg-aa-paper text-aa-ink antialiased;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* Display type carries the page: large, light, tightly tracked. */
+  h1,
+  h2,
+  h3 {
+    @apply tracking-tight;
+    text-wrap: balance;
   }
 
   /* Numeric columns line up in the fare breakdown and settlement tables. */
   .tabular {
     font-variant-numeric: tabular-nums;
   }
+
+  ::selection {
+    @apply bg-aa-red/15;
+  }
 }
 
 @layer components {
+  /**
+   * Surfaces are defined by a hairline, not by fill and shadow. The one
+   * exception is `.aa-panel`, the booking panel that floats over the hero.
+   */
   .aa-card {
-    @apply rounded-2xl border border-aa-border bg-white shadow-aa-card;
+    @apply border border-aa-border bg-aa-paper;
+  }
+
+  .aa-panel {
+    @apply border border-aa-border bg-aa-paper shadow-aa-float;
+  }
+
+  /* Hairline divider used between sections and list rows. */
+  .aa-rule {
+    @apply border-0 border-t border-aa-border;
+  }
+
+  /* Small uppercase label — the workhorse of the whole type system. */
+  .aa-eyebrow {
+    @apply text-[10px] font-bold uppercase tracking-widest text-aa-muted;
   }
 
   .aa-chip {
-    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide;
   }
 
   .aa-btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-aa-cta px-6 py-3.5
-      text-sm font-bold text-white shadow-aa-lift transition
-      hover:brightness-110 focus-visible:outline focus-visible:outline-2
-      focus-visible:outline-offset-2 focus-visible:outline-aa-crimson
-      disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none disabled:brightness-100;
+    @apply inline-flex items-center justify-center gap-2.5 bg-aa-red px-8 py-4
+      text-[13px] font-bold uppercase tracking-wider text-white transition-colors
+      hover:bg-aa-crimson focus-visible:outline focus-visible:outline-2
+      focus-visible:outline-offset-2 focus-visible:outline-aa-red
+      disabled:cursor-not-allowed disabled:bg-aa-mist disabled:text-aa-muted;
   }
 
   .aa-btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-aa-border
-      bg-white px-5 py-3 text-sm font-semibold text-aa-crimson transition
-      hover:bg-aa-tint focus-visible:outline focus-visible:outline-2
-      focus-visible:outline-offset-2 focus-visible:outline-aa-crimson;
+    @apply inline-flex items-center justify-center gap-2 border border-aa-rule
+      bg-transparent px-6 py-3.5 text-[12px] font-bold uppercase tracking-wider
+      text-aa-ink transition-colors hover:border-aa-ink focus-visible:outline
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-aa-red;
   }
 
+  /**
+   * Inputs read as ruled lines on paper rather than as boxes: a single bottom
+   * rule that thickens to the accent on focus.
+   */
   .aa-field {
-    @apply w-full rounded-xl border border-aa-border bg-white px-4 py-3 text-sm text-aa-ink
-      outline-none transition placeholder:text-aa-muted/70
-      focus:border-aa-red focus:ring-2 focus:ring-aa-red/20;
+    @apply w-full border-0 border-b border-aa-rule bg-transparent px-0 py-2.5 text-[15px]
+      text-aa-ink outline-none transition-colors placeholder:text-aa-muted/60
+      focus:border-aa-red;
+  }
+
+  select.aa-field {
+    @apply -ml-1 cursor-pointer appearance-none pl-1 pr-6;
+    background-image: linear-gradient(45deg, transparent 50%, #1a1618 50%),
+      linear-gradient(135deg, #1a1618 50%, transparent 50%);
+    background-position:
+      right 8px center,
+      right 4px center;
+    background-size:
+      4px 4px,
+      4px 4px;
+    background-repeat: no-repeat;
   }
 
   .aa-label {
-    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-aa-muted;
+    @apply mb-1 block text-[10px] font-bold uppercase tracking-widest text-aa-muted;
+  }
+
+  /* Tabular row used by every settlement / breakdown list. */
+  .aa-row {
+    @apply flex items-baseline justify-between gap-4 py-2;
   }
 }

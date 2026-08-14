@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeftRight, CalendarDays, Loader2, Search, Users } from "lucide-react";
+import { ArrowLeftRight, Loader2, Search } from "lucide-react";
 import { useMemo } from "react";
 
 import { addDays, bangkokToday } from "@/lib/format";
@@ -26,10 +26,6 @@ export function SearchPanel({ query, onChange, onSubmit, loading, error }: Props
     return AIRPORT_LIST.filter((airport) => served.includes(airport.code));
   }, [query.origin]);
 
-  function swap() {
-    onChange({ origin: query.destination, destination: query.origin });
-  }
-
   function selectOrigin(origin: AirportCode) {
     const served = ROUTES.filter((route) => route.origin === origin).map((r) => r.destination);
     // Keep the destination if the new origin still serves it, otherwise fall
@@ -39,14 +35,16 @@ export function SearchPanel({ query, onChange, onSubmit, loading, error }: Props
   }
 
   return (
-    <section className="aa-card p-5 sm:p-6">
-      <h2 className="text-base font-bold">ค้นหาเที่ยวบินภายในประเทศ</h2>
-      <p className="mt-1 text-xs text-aa-muted">
-        เส้นทางบินตรงจากดอนเมือง (DMK) สู่จุดหมายปลายทางหลักในประเทศไทย
-      </p>
+    <section>
+      <div className="flex items-baseline justify-between gap-6 border-b border-aa-border pb-4">
+        <h2 className="text-[22px] font-light tracking-tight">ค้นหาเที่ยวบินภายในประเทศ</h2>
+        <p className="hidden text-[11px] font-light text-aa-muted sm:block">
+          บินตรงจากดอนเมือง (DMK)
+        </p>
+      </div>
 
       <form
-        className="mt-5 grid gap-4 lg:grid-cols-[1fr_auto_1fr_1fr_auto]"
+        className="mt-8 grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr_1fr_auto]"
         onSubmit={(event) => {
           event.preventDefault();
           onSubmit();
@@ -70,12 +68,12 @@ export function SearchPanel({ query, onChange, onSubmit, loading, error }: Props
           </select>
         </div>
 
-        <div className="flex items-end justify-center pb-1">
+        <div className="flex items-end justify-start lg:justify-center">
           <button
             type="button"
-            onClick={swap}
+            onClick={() => onChange({ origin: query.destination, destination: query.origin })}
             aria-label="สลับต้นทางและปลายทาง"
-            className="rounded-xl border border-aa-border bg-white p-3 text-aa-crimson transition hover:bg-aa-tint"
+            className="mb-1.5 p-2 text-aa-muted transition-colors hover:text-aa-red"
           >
             <ArrowLeftRight className="h-4 w-4" aria-hidden />
           </button>
@@ -101,7 +99,6 @@ export function SearchPanel({ query, onChange, onSubmit, loading, error }: Props
 
         <div>
           <label className="aa-label" htmlFor="departDate">
-            <CalendarDays className="mr-1 inline h-3 w-3" aria-hidden />
             วันเดินทาง
           </label>
           <input
@@ -115,9 +112,8 @@ export function SearchPanel({ query, onChange, onSubmit, loading, error }: Props
           />
         </div>
 
-        <div className="lg:w-32">
+        <div className="lg:w-28">
           <label className="aa-label" htmlFor="pax">
-            <Users className="mr-1 inline h-3 w-3" aria-hidden />
             ผู้โดยสาร
           </label>
           <select
@@ -134,12 +130,12 @@ export function SearchPanel({ query, onChange, onSubmit, loading, error }: Props
           </select>
         </div>
 
-        <div className="lg:col-span-5">
+        <div className="pt-4 sm:col-span-2 lg:col-span-5">
           <button type="submit" className="aa-btn-primary w-full sm:w-auto" disabled={loading}>
             {loading ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-                กำลังค้นหาที่นั่งว่าง…
+                กำลังค้นหา
               </>
             ) : (
               <>
@@ -149,13 +145,13 @@ export function SearchPanel({ query, onChange, onSubmit, loading, error }: Props
             )}
           </button>
 
-          <p className="mt-3 text-[11px] text-aa-muted">
-            เส้นทาง {AIRPORTS[query.origin].nameTh} → {AIRPORTS[query.destination].nameTh} · ราคาทั้งหมดแสดงเป็นเงินบาท
-            รวมภาษีมูลค่าเพิ่มแล้ว
+          <p className="mt-6 text-[11px] font-light leading-relaxed text-aa-muted">
+            {AIRPORTS[query.origin].nameTh} → {AIRPORTS[query.destination].nameTh} ·
+            ราคาทั้งหมดแสดงเป็นเงินบาท รวมภาษีมูลค่าเพิ่มแล้ว
           </p>
 
           {error && (
-            <p role="alert" className="mt-3 rounded-xl bg-aa-red/10 px-4 py-3 text-xs font-semibold text-aa-crimson">
+            <p role="alert" className="mt-4 border-l-2 border-aa-red pl-4 text-[12px] text-aa-crimson">
               {error}
             </p>
           )}

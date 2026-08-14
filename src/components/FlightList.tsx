@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Luggage, Plane, RefreshCw, Sparkles, Clock } from "lucide-react";
+import { Check } from "lucide-react";
 
 import { clockTime, durationTh, thb } from "@/lib/format";
 import { AIRPORTS, FARE_BRAND_LIST, FARE_BRANDS } from "@/lib/network";
@@ -18,30 +18,34 @@ export function FlightList({ result, selectedFlightId, selectedBrand, onSelect }
   const { flights, query } = result;
 
   return (
-    <section className="space-y-3">
-      <header className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 className="text-base font-bold">
-          เที่ยวบิน {AIRPORTS[query.origin].cityTh} → {AIRPORTS[query.destination].cityTh}
+    <section>
+      <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-aa-border pb-4">
+        <h2 className="text-[22px] font-light tracking-tight">
+          {AIRPORTS[query.origin].cityTh}
+          <span className="mx-3 text-aa-muted">—</span>
+          {AIRPORTS[query.destination].cityTh}
         </h2>
-        <p className="text-xs text-aa-muted">
-          พบ {flights.length} เที่ยวบิน · ตอบกลับจากระบบสำรองที่นั่งใน {result.latencyMs} มิลลิวินาที
+        <p className="text-[11px] font-light text-aa-muted">
+          {flights.length} เที่ยวบิน · ตอบกลับใน {result.latencyMs} มิลลิวินาที
         </p>
-      </header>
+      </div>
 
-      {flights.map((flight) => (
-        <FlightCard
-          key={flight.id}
-          flight={flight}
-          pax={query.pax}
-          selectedBrand={selectedFlightId === flight.id ? selectedBrand : null}
-          onSelect={(brand) => onSelect(flight, brand)}
-        />
-      ))}
+      <ul>
+        {flights.map((flight) => (
+          <FlightRow
+            key={flight.id}
+            flight={flight}
+            pax={query.pax}
+            selectedBrand={selectedFlightId === flight.id ? selectedBrand : null}
+            onSelect={(brand) => onSelect(flight, brand)}
+          />
+        ))}
+      </ul>
     </section>
   );
 }
 
-function FlightCard({
+function FlightRow({
   flight,
   pax,
   selectedBrand,
@@ -52,62 +56,58 @@ function FlightCard({
   selectedBrand: FareBrand | null;
   onSelect: (brand: FareBrand) => void;
 }) {
-  const isSelected = selectedBrand !== null;
-
   return (
-    <article
-      className={[
-        "aa-card overflow-hidden transition",
-        isSelected ? "border-aa-red ring-2 ring-aa-red/20" : "",
-      ].join(" ")}
-    >
-      <div className="grid gap-5 p-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-center">
+    <li className="border-b border-aa-border">
+      <div className="grid items-center gap-x-10 gap-y-6 py-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        {/* Schedule */}
         <div>
-          <div className="flex items-center gap-2 text-[11px] font-semibold text-aa-muted">
-            <span className="rounded-md bg-aa-tint px-2 py-0.5 font-bold text-aa-crimson">
+          <div className="flex items-baseline gap-3">
+            <span className="text-[11px] font-bold tracking-wider text-aa-red">
               {flight.flightNo}
             </span>
-            <span>{flight.aircraft}</span>
+            <span className="text-[11px] font-light text-aa-muted">{flight.aircraft}</span>
           </div>
 
-          <div className="mt-3 flex items-center gap-4">
-            <div className="text-center">
-              <p className="text-2xl font-extrabold tabular leading-none">
+          <div className="mt-4 flex items-baseline gap-5">
+            <div>
+              <p className="text-[26px] font-light tabular leading-none tracking-tight">
                 {clockTime(flight.departAt)}
               </p>
-              <p className="mt-1 text-xs font-semibold text-aa-muted">{flight.origin}</p>
+              <p className="mt-2 text-[11px] font-medium tracking-wider text-aa-muted">
+                {flight.origin}
+              </p>
             </div>
 
-            <div className="flex flex-1 flex-col items-center">
-              <p className="flex items-center gap-1 text-[11px] text-aa-muted">
-                <Clock className="h-3 w-3" aria-hidden />
+            <div className="flex-1 pb-1">
+              <p className="text-center text-[10px] font-light tracking-wide text-aa-muted">
                 {durationTh(flight.durationMin)}
               </p>
-              <div className="relative my-1 h-px w-full bg-aa-border">
-                <Plane
-                  className="absolute -top-2 right-0 h-4 w-4 -rotate-45 text-aa-red"
-                  aria-hidden
-                />
+              <div className="mt-1.5 flex items-center gap-1.5">
+                <span className="h-px flex-1 bg-aa-rule" />
+                <span className="h-1 w-1 rounded-full bg-aa-red" />
               </div>
-              <p className="text-[11px] text-aa-muted">บินตรง</p>
+              <p className="mt-1.5 text-center text-[10px] font-light text-aa-muted">บินตรง</p>
             </div>
 
-            <div className="text-center">
-              <p className="text-2xl font-extrabold tabular leading-none">
+            <div>
+              <p className="text-[26px] font-light tabular leading-none tracking-tight">
                 {clockTime(flight.arriveAt)}
               </p>
-              <p className="mt-1 text-xs font-semibold text-aa-muted">{flight.destination}</p>
+              <p className="mt-2 text-[11px] font-medium tracking-wider text-aa-muted">
+                {flight.destination}
+              </p>
             </div>
           </div>
 
           {flight.seatsLeft <= 12 && (
-            <p className="mt-3 inline-flex rounded-md bg-aa-red/10 px-2 py-1 text-[11px] font-bold text-aa-crimson">
-              เหลือ {flight.seatsLeft} ที่นั่งในราคานี้
+            <p className="mt-4 text-[10px] font-bold uppercase tracking-wider text-aa-red">
+              เหลือ {flight.seatsLeft} ที่นั่ง
             </p>
           )}
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2">
+        {/* Fares */}
+        <div className="grid gap-px bg-aa-border sm:grid-cols-2">
           {FARE_BRAND_LIST.map((brand) => {
             const quote = buildQuote({
               baseFare: flight.baseFare,
@@ -124,47 +124,44 @@ function FlightCard({
                 onClick={() => onSelect(brand.id)}
                 aria-pressed={active}
                 className={[
-                  "group flex h-full flex-col rounded-xl border p-4 text-left transition",
-                  active
-                    ? "border-aa-red bg-aa-tint shadow-aa-card"
-                    : "border-aa-border bg-white hover:border-aa-red/60 hover:bg-aa-tint/60",
+                  "group relative flex h-full flex-col justify-between gap-5 p-5 text-left transition-colors",
+                  active ? "bg-aa-ink text-white" : "bg-aa-paper hover:bg-aa-tint",
                 ].join(" ")}
               >
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <p className="flex items-center gap-1.5 text-sm font-bold text-aa-crimson">
-                      {brand.id === "PREMIUM_FLEX" && (
-                        <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                      )}
+                <div>
+                  <div className="flex items-start justify-between gap-2">
+                    <p
+                      className={[
+                        "text-[11px] font-bold uppercase tracking-wider",
+                        active ? "text-white" : "text-aa-ink",
+                      ].join(" ")}
+                    >
                       {brand.name}
                     </p>
-                    <p className="text-[11px] text-aa-muted">{brand.nameTh}</p>
+                    {active && <Check className="h-3.5 w-3.5 shrink-0 text-aa-red" aria-hidden />}
                   </div>
-                  {active && (
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-aa-red text-white">
-                      <Check className="h-3 w-3" aria-hidden />
-                    </span>
-                  )}
+                  <p
+                    className={[
+                      "mt-1.5 text-[11px] font-light",
+                      active ? "text-white/55" : "text-aa-muted",
+                    ].join(" ")}
+                  >
+                    สัมภาระ {brand.baggageKg} กก. ·{" "}
+                    {brand.changeable ? "เปลี่ยนเที่ยวบินได้" : "เปลี่ยนแปลงไม่ได้"}
+                  </p>
                 </div>
 
-                <ul className="mt-3 flex-1 space-y-1 text-[11px] text-aa-muted">
-                  <li className="flex items-center gap-1.5">
-                    <Luggage className="h-3 w-3 shrink-0" aria-hidden />
-                    สัมภาระ {brand.baggageKg} กก.
-                  </li>
-                  <li className="flex items-center gap-1.5">
-                    <RefreshCw className="h-3 w-3 shrink-0" aria-hidden />
-                    {brand.changeable ? "เปลี่ยนเที่ยวบินได้" : "เปลี่ยนแปลงไม่ได้"}
-                  </li>
-                </ul>
-
-                <div className="mt-3 border-t border-aa-border pt-3">
-                  <p className="text-[10px] uppercase tracking-wide text-aa-muted">
-                    รวม {pax} ท่าน (รวมภาษี)
+                <div>
+                  <p
+                    className={[
+                      "text-[9px] font-bold uppercase tracking-widest",
+                      active ? "text-white/40" : "text-aa-muted",
+                    ].join(" ")}
+                  >
+                    รวม {pax} ท่าน
                   </p>
-                  <p className="text-xl font-extrabold tabular text-aa-ink">{thb(quote.total)}</p>
-                  <p className="text-[10px] text-aa-muted">
-                    {thb(quote.total / pax)} ต่อท่าน
+                  <p className="mt-1 text-[22px] font-light tabular leading-none tracking-tight">
+                    {thb(quote.total)}
                   </p>
                 </div>
               </button>
@@ -173,21 +170,18 @@ function FlightCard({
         </div>
       </div>
 
-      {isSelected && selectedBrand && (
-        <div className="border-t border-aa-border bg-aa-tint/60 px-5 py-3">
-          <p className="text-[11px] font-semibold text-aa-crimson">
-            สิทธิประโยชน์ที่รวมอยู่ใน {FARE_BRANDS[selectedBrand].name}
-          </p>
-          <ul className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">
+      {selectedBrand && (
+        <div className="animate-aa-rise border-t border-aa-border bg-aa-tint px-5 py-4">
+          <p className="aa-eyebrow">รวมอยู่ใน {FARE_BRANDS[selectedBrand].name}</p>
+          <ul className="mt-2.5 flex flex-wrap gap-x-7 gap-y-1.5">
             {FARE_BRANDS[selectedBrand].inclusions.map((item) => (
-              <li key={item} className="flex items-center gap-1 text-[11px] text-aa-muted">
-                <Check className="h-3 w-3 shrink-0 text-aa-success" aria-hidden />
+              <li key={item} className="text-[11px] font-light text-aa-graphite">
                 {item}
               </li>
             ))}
           </ul>
         </div>
       )}
-    </article>
+    </li>
   );
 }

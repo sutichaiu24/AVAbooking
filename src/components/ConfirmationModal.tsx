@@ -77,7 +77,7 @@ export function ConfirmationModal({
       aria-modal="true"
       aria-labelledby="confirmation-title"
     >
-      <div className="animate-aa-rise my-auto w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-aa-lift">
+      <div className="animate-aa-rise my-auto w-full max-w-2xl overflow-hidden bg-white ">
         {committing && <CommitProgress />}
         {!committing && error && <CommitError message={error} onClose={onClose} />}
         {!committing && booking && (
@@ -114,7 +114,7 @@ function CommitProgress() {
 
   return (
     <div className="p-8 text-center">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-aa-tint">
+      <div className="mx-auto flex h-14 w-14 items-center justify-center bg-aa-tint">
         <Server className="h-7 w-7 animate-pulse text-aa-red" aria-hidden />
       </div>
       <h2 id="confirmation-title" className="mt-4 text-lg font-bold">
@@ -129,7 +129,7 @@ function CommitProgress() {
           return (
             <li
               key={step}
-              className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs transition ${
+              className={`flex items-center gap-2.5 px-3 py-2 text-xs transition ${
                 done ? "bg-aa-success/5 text-aa-ink" : active ? "bg-aa-tint text-aa-ink" : "text-aa-muted/60"
               }`}
             >
@@ -188,7 +188,7 @@ function Confirmed({
           type="button"
           onClick={onClose}
           aria-label="ปิดหน้าต่างยืนยันการจอง"
-          className="absolute right-4 top-4 rounded-lg p-1.5 text-white/70 transition hover:bg-white/10 hover:text-white"
+          className="absolute right-4 top-4 p-1.5 text-white/70 transition hover:bg-white/10 hover:text-white"
         >
           <X className="h-4 w-4" aria-hidden />
         </button>
@@ -198,23 +198,23 @@ function Confirmed({
           <p className="text-xs font-bold uppercase tracking-widest">Booking Confirmed</p>
         </div>
 
-        <h2 id="confirmation-title" className="mt-2 text-2xl font-extrabold">
+        <h2 id="confirmation-title" className="mt-2 text-2xl font-medium">
           การจองของคุณสำเร็จแล้ว
         </h2>
         <p className="mt-1 text-xs text-white/60">
           ส่งบัตรโดยสารอิเล็กทรอนิกส์ไปยังอีเมลของคุณเรียบร้อยแล้ว
         </p>
 
-        <div className="mt-5 flex flex-wrap items-end justify-between gap-4 rounded-xl bg-white/10 px-4 py-3">
+        <div className="mt-5 flex flex-wrap items-end justify-between gap-4 bg-white/10 px-4 py-3">
           <div>
             <p className="text-[10px] uppercase tracking-widest text-white/50">
               รหัสการจอง (PNR)
             </p>
-            <p className="tabular text-3xl font-extrabold tracking-wider">{booking.pnr}</p>
+            <p className="tabular text-3xl font-medium tracking-wider">{booking.pnr}</p>
           </div>
           <div className="text-right">
             <p className="text-[10px] uppercase tracking-widest text-white/50">ยอดชำระ</p>
-            <p className="tabular text-xl font-extrabold">{thb(quote.total)}</p>
+            <p className="tabular text-xl font-medium">{thb(quote.total)}</p>
           </div>
         </div>
       </div>
@@ -223,17 +223,17 @@ function Confirmed({
         {/* Itinerary */}
         <section>
           <SectionHeading icon={Plane} title="รายละเอียดเที่ยวบิน" />
-          <div className="mt-2.5 rounded-xl border border-aa-border p-4">
+          <div className="mt-2.5 border border-aa-border p-4">
             <div className="flex items-center gap-4">
               <div>
-                <p className="tabular text-xl font-extrabold">{clockTime(flight.departAt)}</p>
+                <p className="tabular text-xl font-medium">{clockTime(flight.departAt)}</p>
                 <p className="text-xs font-semibold text-aa-muted">
                   {flight.origin} · {AIRPORTS[flight.origin].cityTh}
                 </p>
               </div>
               <div className="flex-1 border-t border-dashed border-aa-border" aria-hidden />
               <div className="text-right">
-                <p className="tabular text-xl font-extrabold">{clockTime(flight.arriveAt)}</p>
+                <p className="tabular text-xl font-medium">{clockTime(flight.arriveAt)}</p>
                 <p className="text-xs font-semibold text-aa-muted">
                   {flight.destination} · {AIRPORTS[flight.destination].cityTh}
                 </p>
@@ -274,7 +274,7 @@ function Confirmed({
         </section>
 
         {/* Savings — the executive headline */}
-        <section className="rounded-xl border border-aa-success/25 bg-aa-success/5 p-4">
+        <section className="border border-aa-success/25 bg-aa-success/5 p-4">
           <p className="flex items-center gap-1.5 text-xs font-bold text-aa-success">
             <Sparkles className="h-4 w-4 shrink-0" aria-hidden />
             คุณประหยัดค่าธรรมเนียมไป {thb(quote.savings.total)} จากการชำระเงินในประเทศ
@@ -290,7 +290,7 @@ function Confirmed({
             />
             <div className="flex items-baseline justify-between border-t border-aa-success/20 pt-1.5">
               <dt className="font-bold text-aa-ink">รวมประหยัดต่อการจอง</dt>
-              <dd className="tabular text-base font-extrabold text-aa-success">
+              <dd className="tabular text-base font-medium text-aa-success">
                 {thb(quote.savings.total)}
               </dd>
             </div>
@@ -300,7 +300,7 @@ function Confirmed({
         {/* Settlement + PSS trace */}
         <section>
           <SectionHeading icon={Landmark} title="การรับชำระเงินและการเชื่อมต่อระบบส่วนกลาง" />
-          <dl className="mt-2.5 space-y-1.5 rounded-xl border border-aa-border p-4 text-[11px]">
+          <dl className="mt-2.5 space-y-1.5 border border-aa-border p-4 text-[11px]">
             <InfoRow label="ผู้รับชำระเงิน (Merchant of Record)" value={settlement.entityTh} />
             <InfoRow label="Merchant ID" value={settlement.merchantId} />
             <InfoRow label="ผู้ให้บริการรับชำระ" value={settlement.acquirer} />

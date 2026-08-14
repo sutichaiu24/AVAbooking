@@ -1,6 +1,6 @@
 "use client";
 
-import { IdCard, UserRound } from "lucide-react";
+import { IdCard } from "lucide-react";
 
 import type { Passenger } from "@/lib/types";
 
@@ -14,23 +14,23 @@ const TITLES: Array<Passenger["title"]> = ["MR", "MS", "MRS"];
 
 export function PassengerPanel({ passengers, onChange, errors }: Props) {
   return (
-    <section className="aa-card p-5 sm:p-6">
-      <h2 className="flex items-center gap-2 text-base font-bold">
-        <UserRound className="h-4 w-4 text-aa-red" aria-hidden />
-        ข้อมูลผู้โดยสาร
-      </h2>
-      <p className="mt-1 text-xs text-aa-muted">
-        กรอกชื่อ-นามสกุลให้ตรงกับบัตรประชาชนหรือหนังสือเดินทางที่ใช้เดินทาง
-      </p>
+    <section>
+      <div className="border-b border-aa-border pb-4">
+        <h2 className="text-[22px] font-light tracking-tight">ข้อมูลผู้โดยสาร</h2>
+        <p className="mt-2 text-[11px] font-light text-aa-muted">
+          กรอกชื่อ-นามสกุลให้ตรงกับบัตรประชาชนหรือหนังสือเดินทางที่ใช้เดินทาง
+        </p>
+      </div>
 
-      <div className="mt-5 space-y-6">
+      <div className="divide-y divide-aa-border">
         {passengers.map((passenger, index) => (
-          <fieldset key={index} className="rounded-xl border border-aa-border p-4">
-            <legend className="px-2 text-xs font-bold text-aa-crimson">
-              ผู้โดยสารคนที่ {index + 1} {index === 0 && "(ผู้ติดต่อหลัก)"}
+          <fieldset key={index} className="border-0 py-8">
+            <legend className="aa-eyebrow mb-6 p-0">
+              ผู้โดยสารคนที่ {String(index + 1).padStart(2, "0")}
+              {index === 0 && " · ผู้ติดต่อหลัก"}
             </legend>
 
-            <div className="grid gap-4 sm:grid-cols-6">
+            <div className="grid gap-x-8 gap-y-7 sm:grid-cols-6">
               <div className="sm:col-span-1">
                 <label className="aa-label" htmlFor={`title-${index}`}>
                   คำนำหน้า
@@ -111,8 +111,8 @@ export function PassengerPanel({ passengers, onChange, errors }: Props) {
         ))}
       </div>
 
-      <p className="mt-4 flex items-start gap-2 rounded-xl bg-aa-tint p-3 text-[11px] leading-snug text-aa-muted">
-        <IdCard className="mt-px h-3.5 w-3.5 shrink-0 text-aa-crimson" aria-hidden />
+      <p className="flex items-start gap-2.5 border-t border-aa-border pt-5 text-[10px] font-light leading-relaxed text-aa-muted">
+        <IdCard className="mt-0.5 h-3.5 w-3.5 shrink-0 text-aa-muted" aria-hidden />
         ข้อมูลผู้โดยสารถูกจัดเก็บและประมวลผลภายในประเทศไทยตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล
         (PDPA) ก่อนส่งต่อไปยังระบบสำรองที่นั่งเพื่อออกบัตรโดยสาร
       </p>
@@ -150,13 +150,13 @@ function Field({
         id={id}
         type={type}
         inputMode={inputMode}
-        className={`aa-field ${error ? "border-aa-red ring-2 ring-aa-red/20" : ""}`}
+        className={`aa-field ${error ? "border-aa-red" : ""}`}
         placeholder={placeholder}
         value={value}
         aria-invalid={Boolean(error)}
         onChange={(event) => onChange(event.target.value)}
       />
-      {error && <p className="mt-1 text-[11px] font-semibold text-aa-red">{error}</p>}
+      {error && <p className="mt-1.5 text-[10px] font-medium text-aa-red">{error}</p>}
     </div>
   );
 }

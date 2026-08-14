@@ -79,14 +79,14 @@ export function ProviderPane({ method, providers, amount, onSettled }: Props) {
               onClick={() => setSelected(item.id)}
               aria-pressed={active}
               className={[
-                "flex items-center gap-3 rounded-xl border p-3 text-left transition disabled:opacity-60",
+                "flex items-center gap-3 border p-3 text-left transition disabled:opacity-60",
                 active
-                  ? "border-aa-red bg-aa-tint shadow-aa-card"
-                  : "border-aa-border bg-white hover:border-aa-red/60 hover:bg-aa-tint/60",
+                  ? "border-aa-red bg-aa-tint "
+                  : "border-aa-border bg-white hover:border-aa-red/60 hover:bg-aa-tint",
               ].join(" ")}
             >
               <span
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-[11px] font-extrabold text-white ${item.swatch}`}
+                className={`flex h-10 w-10 shrink-0 items-center justify-center text-[11px] font-medium text-white ${item.swatch}`}
                 aria-hidden
               >
                 {item.mark}
@@ -109,7 +109,7 @@ export function ProviderPane({ method, providers, amount, onSettled }: Props) {
       )}
 
       {error && (
-        <p role="alert" className="mt-3 rounded-xl bg-aa-red/10 px-3 py-2 text-[11px] font-semibold text-aa-crimson">
+        <p role="alert" className="mt-3 bg-aa-red/10 px-3 py-2 text-[11px] font-semibold text-aa-crimson">
           {error}
         </p>
       )}

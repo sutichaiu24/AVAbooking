@@ -222,17 +222,21 @@ export function BookingFlow() {
   const showSummary = Boolean(flight && quote) && step !== "search";
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6">
-      <div className="aa-card -mt-8 mb-6 px-5 py-4">
+    <div className="relative mx-auto max-w-6xl px-6 pb-28">
+      {/* The panel breaks the hero's lower edge — the one piece of elevation
+          on the page. */}
+      <div className="aa-panel -mt-20 mb-10 px-8 pb-8 pt-6 lg:-mt-24 lg:px-10">
         <Stepper current={step} />
       </div>
 
       <div
         className={
-          showSummary ? "grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start" : "space-y-6"
+          showSummary
+            ? "grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1fr)_312px] lg:items-start"
+            : "space-y-10"
         }
       >
-        <div className="min-w-0 space-y-6">
+        <div className="min-w-0 space-y-10">
           {step === "search" && (
             <SearchPanel
               query={query}
@@ -312,9 +316,9 @@ function BackLink({ label, onClick }: { label: string; onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="inline-flex items-center gap-1.5 text-xs font-semibold text-aa-crimson transition hover:underline"
+      className="group inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-aa-muted transition-colors hover:text-aa-ink"
     >
-      <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
+      <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" aria-hidden />
       {label}
     </button>
   );

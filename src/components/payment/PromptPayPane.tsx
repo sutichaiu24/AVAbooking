@@ -148,10 +148,10 @@ export function PromptPayPane({ amount, onSettled }: Props) {
   return (
     <div className="grid gap-6 p-5 lg:grid-cols-[auto_minmax(0,1fr)]">
       <div className="mx-auto w-full max-w-[280px]">
-        <div className="relative overflow-hidden rounded-2xl border border-aa-border bg-white p-4 shadow-aa-card">
+        <div className="relative overflow-hidden border border-aa-border bg-white p-4 ">
           {/* PromptPay brand strip, as printed on merchant-presented codes. */}
           <div className="-m-4 mb-4 bg-aa-hero px-4 py-2.5 text-center">
-            <p className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-white">
+            <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-white">
               PromptPay
             </p>
             <p className="text-[10px] text-white/60">พร้อมเพย์</p>
@@ -193,7 +193,7 @@ export function PromptPayPane({ amount, onSettled }: Props) {
 
           <div className="mt-3 border-t border-dashed border-aa-border pt-3 text-center">
             <p className="text-[10px] uppercase tracking-wide text-aa-muted">ยอดชำระ</p>
-            <p className="text-2xl font-extrabold tabular text-aa-crimson">{thb(amount)}</p>
+            <p className="text-2xl font-medium tabular text-aa-crimson">{thb(amount)}</p>
             <p className="mt-1 text-[10px] text-aa-muted">
               อ้างอิง <span className="tabular font-semibold">{intent.ref}</span>
             </p>
@@ -240,7 +240,7 @@ export function PromptPayPane({ amount, onSettled }: Props) {
           ]}
         />
 
-        <details className="mt-3 rounded-xl border border-aa-border bg-white p-3">
+        <details className="mt-3 border border-aa-border bg-white p-3">
           <summary className="cursor-pointer text-[11px] font-semibold text-aa-crimson">
             ดู EMVCo payload ที่เข้ารหัสอยู่ในรหัส QR นี้
           </summary>
