@@ -1,4 +1,5 @@
-import { MERCHANT } from "@/lib/network";
+import { thb } from "@/lib/format";
+import { destinationCount, lowestLeadInFare } from "@/lib/network";
 
 /**
  * Optional hero photograph, served from `public/`.
@@ -32,22 +33,37 @@ export function SiteHeader() {
       <RouteBackdrop />
 
       <div className="relative mx-auto max-w-6xl px-6 pb-32 pt-20 sm:pt-28 lg:pb-40">
-        <p className="aa-eyebrow text-white/50">Thailand Domestic · ไทยแอร์เอเชีย</p>
+        <p className="aa-eyebrow text-white/50">บินตรงทั่วไทย · ไทยแอร์เอเชีย</p>
 
         <h1 className="mt-7 max-w-3xl text-[34px] font-light leading-[1.15] tracking-tighter sm:text-[46px] lg:text-[54px]">
-          จองบัตรโดยสารในประเทศ
-          <span className="mt-1 block text-white/55">ชำระเป็นเงินบาท เข้านิติบุคคลไทย</span>
+          จองตั๋วเครื่องบินในประเทศ
+          <span className="mt-1 block text-white/55">ราคาเริ่มต้น {thb(lowestLeadInFare())}</span>
         </h1>
 
         <p className="mt-8 max-w-xl text-[14px] font-light leading-[1.8] text-white/60">
-          ระบบจองและชำระเงินเฉพาะตลาดไทย รองรับพร้อมเพย์ โมบายแบงก์กิ้ง ทรูมันนี่ และบัตรในประเทศ
-          พร้อมส่งข้อมูลการจองกลับเข้าระบบสำรองที่นั่งส่วนกลางแบบเรียลไทม์
+          บินตรงจากดอนเมืองสู่เชียงใหม่ ภูเก็ต หาดใหญ่ เชียงราย และอุดรธานี
+          จ่ายง่ายด้วยพร้อมเพย์ โมบายแบงก์กิ้ง ทรูมันนี่ หรือบัตรในประเทศ ออกบัตรโดยสารทันที
         </p>
 
+        {/* Customer-facing reassurance. The merchant-of-record detail that used
+            to sit here now lives where it is actually relevant — on each
+            payment rail and in the footer. */}
         <dl className="mt-14 flex flex-wrap gap-x-16 gap-y-8 border-t border-white/15 pt-8">
-          <Fact label="Merchant of record" value={MERCHANT.legalNameTh} sub={MERCHANT.legalName} />
-          <Fact label="เลขประจำตัวผู้เสียภาษี" value={MERCHANT.taxId} sub="Merchant ID · TH-FD-MERCH-004821" />
-          <Fact label="สกุลเงินรับชำระ" value="THB" sub={MERCHANT.settlementBank} />
+          <Fact
+            label="จุดหมายปลายทาง"
+            value={`${destinationCount()} เมืองทั่วไทย`}
+            sub="บินตรง ไม่ต่อเครื่อง"
+          />
+          <Fact
+            label="ค่าโดยสารเริ่มต้น"
+            value={thb(lowestLeadInFare())}
+            sub="ต่อเที่ยว ก่อนภาษีและค่าธรรมเนียม"
+          />
+          <Fact
+            label="ชำระเงิน"
+            value="พร้อมเพย์ · บัตร · วอลเล็ท"
+            sub="ยืนยันอัตโนมัติภายในไม่กี่วินาที"
+          />
         </dl>
       </div>
     </header>

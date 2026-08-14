@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Plane } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 import { MERCHANT } from "@/lib/network";
@@ -45,18 +45,27 @@ export function ExecutiveValueBanner() {
         <div className="flex h-16 items-center justify-between gap-8">
           <Wordmark />
 
-          <dl className="hidden items-center divide-x divide-aa-border lg:flex">
-            {METRICS.map((metric) => (
-              <div key={metric.label} className="px-6 last:pr-0">
-                <dd className="text-[15px] font-bold tabular leading-none tracking-tight text-aa-red">
-                  {metric.figure}
-                </dd>
-                <dt className="mt-1.5 text-[10px] font-medium tracking-wide text-aa-muted">
-                  {metric.label}
-                </dt>
-              </div>
-            ))}
-          </dl>
+          {/* Labelled so the internal KPIs read as an overlay on the product
+              rather than as something a passenger would see on a booking site. */}
+          <div className="hidden items-center gap-6 lg:flex">
+            <span className="aa-eyebrow shrink-0 border-r border-aa-border pr-6 leading-[1.6]">
+              มุมมอง
+              <br />
+              ผู้บริหาร
+            </span>
+            <dl className="flex items-center divide-x divide-aa-border">
+              {METRICS.map((metric) => (
+                <div key={metric.label} className="px-6 last:pr-0">
+                  <dd className="text-[15px] font-bold tabular leading-none tracking-tight text-aa-red">
+                    {metric.figure}
+                  </dd>
+                  <dt className="mt-1.5 text-[10px] font-medium tracking-wide text-aa-muted">
+                    {metric.label}
+                  </dt>
+                </div>
+              ))}
+            </dl>
+          </div>
 
           <button
             type="button"
@@ -92,12 +101,24 @@ export function ExecutiveValueBanner() {
   );
 }
 
+/**
+ * Official airline mark, served from `public/logo.png`.
+ *
+ * Optional: when the file is absent nothing paints and the text lockup beside
+ * it carries the identification on its own, so the masthead still reads
+ * correctly. Trademarks are only ever rendered from a supplied asset — never
+ * redrawn.
+ */
+const LOGO = "/logo.png";
+
 function Wordmark() {
   return (
-    <div className="flex items-center gap-3">
-      <span className="flex h-7 w-7 items-center justify-center bg-aa-red">
-        <Plane className="h-4 w-4 -rotate-45 text-white" aria-hidden />
-      </span>
+    <div className="flex shrink-0 items-center gap-3">
+      <span
+        aria-hidden
+        className="h-8 w-8 shrink-0 bg-contain bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${LOGO})` }}
+      />
       <span className="leading-none">
         <span className="block text-[15px] font-bold tracking-tight text-aa-ink">AirAsia</span>
         <span className="mt-1 block text-[9px] font-medium uppercase tracking-widest text-aa-muted">

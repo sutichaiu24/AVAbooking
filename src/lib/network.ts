@@ -73,6 +73,16 @@ const SECTORS: Record<string, SectorSpec> = {
   "DMK-UTH": { blockMin: 65, leadInFare: 640, frequency: 5 },
 };
 
+/** Cheapest published lead-in fare across the network, for the hero's "from" price. */
+export function lowestLeadInFare(): number {
+  return Math.min(...Object.values(SECTORS).map((sector) => sector.leadInFare));
+}
+
+/** Number of airports the network touches. */
+export function destinationCount(): number {
+  return Object.keys(AIRPORTS).length;
+}
+
 export function sectorKey(origin: AirportCode, destination: AirportCode): string {
   const direct = `${origin}-${destination}`;
   if (SECTORS[direct]) return direct;
