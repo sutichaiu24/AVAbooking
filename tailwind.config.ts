@@ -40,13 +40,11 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          "var(--font-anuphan)",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
           "Noto Sans Thai",
-          "Sarabun",
-          "Kanit",
-          "Prompt",
           "Helvetica Neue",
           "Arial",
           "sans-serif",
