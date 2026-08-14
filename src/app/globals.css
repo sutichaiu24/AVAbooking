@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-aa-tint text-aa-ink antialiased;
+  }
+
+  /* Numeric columns line up in the fare breakdown and settlement tables. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .aa-card {
+    @apply rounded-2xl border border-aa-border bg-white shadow-aa-card;
+  }
+
+  .aa-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  .aa-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-aa-cta px-6 py-3.5
+      text-sm font-bold text-white shadow-aa-lift transition
+      hover:brightness-110 focus-visible:outline focus-visible:outline-2
+      focus-visible:outline-offset-2 focus-visible:outline-aa-crimson
+      disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none disabled:brightness-100;
+  }
+
+  .aa-btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-aa-border
+      bg-white px-5 py-3 text-sm font-semibold text-aa-crimson transition
+      hover:bg-aa-tint focus-visible:outline focus-visible:outline-2
+      focus-visible:outline-offset-2 focus-visible:outline-aa-crimson;
+  }
+
+  .aa-field {
+    @apply w-full rounded-xl border border-aa-border bg-white px-4 py-3 text-sm text-aa-ink
+      outline-none transition placeholder:text-aa-muted/70
+      focus:border-aa-red focus:ring-2 focus:ring-aa-red/20;
+  }
+
+  .aa-label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-aa-muted;
+  }
+}
