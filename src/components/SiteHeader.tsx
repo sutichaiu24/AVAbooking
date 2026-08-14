@@ -35,12 +35,12 @@ export function SiteHeader() {
       <div className="relative mx-auto max-w-6xl px-6 pb-32 pt-20 sm:pt-28 lg:pb-40">
         <p className="aa-eyebrow text-white/50">บินตรงทั่วไทย · ไทยแอร์เอเชีย</p>
 
-        <h1 className="mt-7 max-w-3xl text-[34px] font-light leading-[1.15] tracking-tighter sm:text-[46px] lg:text-[54px]">
+        <h1 className="mt-7 max-w-3xl text-[36px] font-light leading-[1.15] tracking-tighter sm:text-[48px] lg:text-[58px]">
           จองตั๋วเครื่องบินในประเทศ
           <span className="mt-1 block text-white/55">ราคาเริ่มต้น {thb(lowestLeadInFare())}</span>
         </h1>
 
-        <p className="mt-8 max-w-xl text-[14px] font-light leading-[1.8] text-white/60">
+        <p className="mt-8 max-w-xl text-[16px] font-light leading-[1.8] text-white/60">
           บินตรงจากดอนเมืองสู่เชียงใหม่ ภูเก็ต หาดใหญ่ เชียงราย และอุดรธานี
           จ่ายง่ายด้วยพร้อมเพย์ โมบายแบงก์กิ้ง ทรูมันนี่ หรือบัตรในประเทศ ออกบัตรโดยสารทันที
         </p>
@@ -74,8 +74,8 @@ function Fact({ label, value, sub }: { label: string; value: string; sub: string
   return (
     <div className="min-w-0">
       <dt className="aa-eyebrow text-white/40">{label}</dt>
-      <dd className="mt-2.5 text-[15px] font-medium tracking-tight text-white">{value}</dd>
-      <dd className="mt-0.5 text-[11px] font-light text-white/45">{sub}</dd>
+      <dd className="mt-2.5 text-[16px] font-medium tracking-tight text-white">{value}</dd>
+      <dd className="mt-0.5 text-[13px] font-light text-white/45">{sub}</dd>
     </div>
   );
 }

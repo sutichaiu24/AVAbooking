@@ -9,8 +9,8 @@
 
   body {
     @apply bg-aa-paper text-aa-ink antialiased;
-    font-size: 15px;
-    line-height: 1.65;
+    font-size: 16px;
+    line-height: 1.7;
   }
 
   /* Display type carries the page: large, light, tightly tracked. */
@@ -51,16 +51,16 @@
 
   /* Small uppercase label — the workhorse of the whole type system. */
   .aa-eyebrow {
-    @apply text-[10px] font-bold uppercase tracking-widest text-aa-muted;
+    @apply text-[11px] font-bold uppercase tracking-widest text-aa-muted;
   }
 
   .aa-chip {
-    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide;
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-[13px] font-bold uppercase tracking-wide;
   }
 
   .aa-btn-primary {
     @apply inline-flex items-center justify-center gap-2.5 bg-aa-red px-8 py-4
-      text-[13px] font-bold uppercase tracking-wider text-white transition-colors
+      text-[14px] font-bold uppercase tracking-wider text-white transition-colors
       hover:bg-aa-crimson focus-visible:outline focus-visible:outline-2
       focus-visible:outline-offset-2 focus-visible:outline-aa-red
       disabled:cursor-not-allowed disabled:bg-aa-mist disabled:text-aa-muted;
@@ -68,7 +68,7 @@
 
   .aa-btn-ghost {
     @apply inline-flex items-center justify-center gap-2 border border-aa-rule
-      bg-transparent px-6 py-3.5 text-[12px] font-bold uppercase tracking-wider
+      bg-transparent px-6 py-3.5 text-[14px] font-bold uppercase tracking-wider
       text-aa-ink transition-colors hover:border-aa-ink focus-visible:outline
       focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-aa-red;
   }
@@ -78,7 +78,7 @@
    * rule that thickens to the accent on focus.
    */
   .aa-field {
-    @apply w-full border-0 border-b border-aa-rule bg-transparent px-0 py-2.5 text-[15px]
+    @apply w-full border-0 border-b border-aa-rule bg-transparent px-0 py-2.5 text-[16px]
       text-aa-ink outline-none transition-colors placeholder:text-aa-muted/60
       focus:border-aa-red;
   }
@@ -97,7 +97,7 @@
   }
 
   .aa-label {
-    @apply mb-1 block text-[10px] font-bold uppercase tracking-widest text-aa-muted;
+    @apply mb-1 block text-[11px] font-bold uppercase tracking-widest text-aa-muted;
   }
 
   /* Tabular row used by every settlement / breakdown list. */

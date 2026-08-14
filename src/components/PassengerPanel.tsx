@@ -16,8 +16,8 @@ export function PassengerPanel({ passengers, onChange, errors }: Props) {
   return (
     <section>
       <div className="border-b border-aa-border pb-4">
-        <h2 className="text-[22px] font-light tracking-tight">ข้อมูลผู้โดยสาร</h2>
-        <p className="mt-2 text-[11px] font-light text-aa-muted">
+        <h2 className="text-[26px] font-light tracking-tight">ข้อมูลผู้โดยสาร</h2>
+        <p className="mt-2 text-[13px] font-light text-aa-muted">
           กรอกชื่อ-นามสกุลให้ตรงกับบัตรประชาชนหรือหนังสือเดินทางที่ใช้เดินทาง
         </p>
       </div>
@@ -111,7 +111,7 @@ export function PassengerPanel({ passengers, onChange, errors }: Props) {
         ))}
       </div>
 
-      <p className="flex items-start gap-2.5 border-t border-aa-border pt-5 text-[10px] font-light leading-relaxed text-aa-muted">
+      <p className="flex items-start gap-2.5 border-t border-aa-border pt-5 text-[11px] font-light leading-relaxed text-aa-muted">
         <IdCard className="mt-0.5 h-3.5 w-3.5 shrink-0 text-aa-muted" aria-hidden />
         ข้อมูลผู้โดยสารถูกจัดเก็บและประมวลผลภายในประเทศไทยตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล
         (PDPA) ก่อนส่งต่อไปยังระบบสำรองที่นั่งเพื่อออกบัตรโดยสาร
@@ -156,7 +156,7 @@ function Field({
         aria-invalid={Boolean(error)}
         onChange={(event) => onChange(event.target.value)}
       />
-      {error && <p className="mt-1.5 text-[10px] font-medium text-aa-red">{error}</p>}
+      {error && <p className="mt-1.5 text-[11px] font-medium text-aa-red">{error}</p>}
     </div>
   );
 }

@@ -63,7 +63,7 @@ export function ProviderPane({ method, providers, amount, onSettled }: Props) {
       <p className="text-xs font-semibold text-aa-ink">
         {isBanking ? "เลือกธนาคารของคุณ" : "เลือกกระเป๋าเงินอิเล็กทรอนิกส์"}
       </p>
-      <p className="mt-1 text-[11px] text-aa-muted">
+      <p className="mt-1 text-[13px] text-aa-muted">
         ระบบจะเปิดแอปพลิเคชันของผู้ให้บริการโดยอัตโนมัติผ่าน Deep Link
         โดยไม่ต้องกรอกเลขบัญชีหรือจำนวนเงินเอง
       </p>
@@ -86,14 +86,14 @@ export function ProviderPane({ method, providers, amount, onSettled }: Props) {
               ].join(" ")}
             >
               <span
-                className={`flex h-10 w-10 shrink-0 items-center justify-center text-[11px] font-medium text-white ${item.swatch}`}
+                className={`flex h-10 w-10 shrink-0 items-center justify-center text-[13px] font-medium text-white ${item.swatch}`}
                 aria-hidden
               >
                 {item.mark}
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-bold">{item.name}</span>
-                <span className="block truncate text-[11px] text-aa-muted">{item.nameTh}</span>
+                <span className="block truncate text-[13px] text-aa-muted">{item.nameTh}</span>
               </span>
               {active && <CheckCircle2 className="h-4 w-4 shrink-0 text-aa-red" aria-hidden />}
             </button>
@@ -102,14 +102,14 @@ export function ProviderPane({ method, providers, amount, onSettled }: Props) {
       </div>
 
       {provider?.deepLink && (
-        <p className="mt-3 flex items-center gap-1.5 font-mono text-[10px] text-aa-muted">
+        <p className="mt-3 flex items-center gap-1.5 font-mono text-[11px] text-aa-muted">
           <ArrowUpRight className="h-3 w-3 shrink-0" aria-hidden />
           {provider.deepLink}?amount={amount.toFixed(2)}&merchant={MERCHANT.merchantId}&ccy=THB
         </p>
       )}
 
       {error && (
-        <p role="alert" className="mt-3 bg-aa-red/10 px-3 py-2 text-[11px] font-semibold text-aa-crimson">
+        <p role="alert" className="mt-3 bg-aa-red/10 px-3 py-2 text-[13px] font-semibold text-aa-crimson">
           {error}
         </p>
       )}

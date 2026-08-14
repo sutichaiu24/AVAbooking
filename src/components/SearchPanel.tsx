@@ -37,8 +37,8 @@ export function SearchPanel({ query, onChange, onSubmit, loading, error }: Props
   return (
     <section>
       <div className="flex items-baseline justify-between gap-6 border-b border-aa-border pb-4">
-        <h2 className="text-[22px] font-light tracking-tight">ค้นหาเที่ยวบินภายในประเทศ</h2>
-        <p className="hidden text-[11px] font-light text-aa-muted sm:block">
+        <h2 className="text-[26px] font-light tracking-tight">ค้นหาเที่ยวบินภายในประเทศ</h2>
+        <p className="hidden text-[13px] font-light text-aa-muted sm:block">
           บินตรงจากดอนเมือง (DMK)
         </p>
       </div>
@@ -145,13 +145,13 @@ export function SearchPanel({ query, onChange, onSubmit, loading, error }: Props
             )}
           </button>
 
-          <p className="mt-6 text-[11px] font-light leading-relaxed text-aa-muted">
+          <p className="mt-6 text-[13px] font-light leading-relaxed text-aa-muted">
             {AIRPORTS[query.origin].nameTh} → {AIRPORTS[query.destination].nameTh} ·
             ราคาทั้งหมดแสดงเป็นเงินบาท รวมภาษีมูลค่าเพิ่มแล้ว
           </p>
 
           {error && (
-            <p role="alert" className="mt-4 border-l-2 border-aa-red pl-4 text-[12px] text-aa-crimson">
+            <p role="alert" className="mt-4 border-l-2 border-aa-red pl-4 text-[14px] text-aa-crimson">
               {error}
             </p>
           )}
