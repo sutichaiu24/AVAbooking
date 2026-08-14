@@ -1,5 +1,6 @@
 import { BookingFlow } from "@/components/BookingFlow";
 import { ExecutiveValueBanner } from "@/components/ExecutiveValueBanner";
+import { PhotoBand } from "@/components/PhotoBand";
 import { SiteHeader } from "@/components/SiteHeader";
 import { MERCHANT } from "@/lib/network";
 
@@ -11,6 +12,11 @@ export default function Page() {
 
       <main>
         <BookingFlow />
+        <PhotoBand
+          file="apron.jpg"
+          caption="ดอนเมือง — ฐานปฏิบัติการภายในประเทศ"
+          sub="เที่ยวบินภายในประเทศของไทยแอร์เอเชียออกเดินทางจากท่าอากาศยานดอนเมือง สู่ 5 จุดหมายปลายทางหลักทั่วประเทศ"
+        />
         <ArchitectureStrip />
       </main>
 
