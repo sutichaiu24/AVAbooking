@@ -8,7 +8,7 @@ import { MERCHANT } from "@/lib/network";
  * network below simply show through, which is exactly the previous design.
  * Drop a file at this path to switch the hero over to photography.
  */
-const HERO_PHOTO = "/hero.webp";
+const HERO_PHOTO = "/hero.png";
 
 export function SiteHeader() {
   return (

@@ -1,21 +1,26 @@
 # Hero photograph
 
-`SiteHeader` paints `/hero.webp` behind the headline. The file is optional —
+`SiteHeader` paints `/hero.png` behind the headline. The file is optional —
 when it is absent the crimson gradient and the drawn route network show
 through instead, which is the design the page shipped with.
 
-To switch the hero over to photography, drop a file here named `hero.webp`:
+To change the hero, replace `hero.png` here.
 
-- **Aspect** 21:9 (about 2400×1030); the hero crops with `background-size: cover`
-- **Weight** keep it under ~300 KB, the whole page's JS is only ~90 KB
+- **Aspect** 21:9 (about 2400x1030); the hero crops with `background-size: cover`
 - **Composition** the left 45% must stay dark and empty — the Thai headline
   sits there. A gradient overlay guarantees contrast regardless, but a busy
   left edge still shows through it.
+- **Weight** aim for under ~400 KB. A full-size PNG photograph is usually
+  several megabytes, which is a poor trade for a background image.
 
-Convert with either of:
+Shrinking a PNG photograph, using tools already on macOS:
 
 ```bash
-cwebp -q 82 -resize 2400 0 source.jpg -o hero.webp
-# or
-magick source.jpg -resize 2400x -quality 82 hero.webp
+# resize and re-encode as JPEG (usually 10-20x smaller than the PNG)
+sips -Z 2400 -s format jpeg -s formatOptions 82 hero.png --out hero.jpg
 ```
+
+Or drag it into https://squoosh.app and export WebP at quality ~82.
+
+If you switch the file to `.jpg` or `.webp`, update `HERO_PHOTO` in
+`src/components/SiteHeader.tsx` to match.
