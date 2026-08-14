@@ -44,7 +44,45 @@ function Fact({ label, value, sub }: { label: string; value: string; sub: string
   );
 }
 
-/** Great-circle arcs, drawn rather than photographed. */
+/**
+ * The route network, drawn rather than photographed.
+ *
+ * Deliberately abstract: a curved graticule and a set of great-circle arcs
+ * converging on a single hub. No coastlines and no place names — a drawn map
+ * that tries to be literal ends up being a wrong map, and labels would fight
+ * the headline sitting on top of it.
+ *
+ * Geometry is hand-placed rather than random so server and client render
+ * identically, and the whole network is kept to the right of centre to leave
+ * the headline's half of the frame quiet.
+ */
+
+/** Hub, in viewBox units. Sits well right of the headline column. */
+const HUB = { x: 812, y: 246 };
+
+/** Destinations, with the bow height of the arc that reaches each one. */
+const SPOKES = [
+  { x: 1042, y: 92, bow: -58 },
+  { x: 1148, y: 214, bow: -34 },
+  { x: 1096, y: 372, bow: 30 },
+  { x: 934, y: 470, bow: 44 },
+  { x: 706, y: 468, bow: 40 },
+  { x: 636, y: 104, bow: -46 },
+];
+
+/** Quadratic arc from the hub, bowed perpendicular to the chord. */
+function arc(to: { x: number; y: number; bow: number }): string {
+  const mx = (HUB.x + to.x) / 2;
+  const my = (HUB.y + to.y) / 2;
+  const dx = to.x - HUB.x;
+  const dy = to.y - HUB.y;
+  const len = Math.hypot(dx, dy) || 1;
+  // Perpendicular offset gives every arc the same great-circle bow.
+  const cx = mx + (-dy / len) * to.bow;
+  const cy = my + (dx / len) * to.bow;
+  return `M${HUB.x} ${HUB.y} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${to.x} ${to.y}`;
+}
+
 function RouteBackdrop() {
   return (
     <svg
@@ -57,29 +95,63 @@ function RouteBackdrop() {
       <defs>
         <linearGradient id="aa-arc" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#E60000" stopOpacity="0" />
-          <stop offset="55%" stopColor="#E60000" stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#E60000" stopOpacity="0" />
+          <stop offset="45%" stopColor="#FF4D4D" stopOpacity="0.7" />
+          <stop offset="100%" stopColor="#E60000" stopOpacity="0.15" />
         </linearGradient>
-        <radialGradient id="aa-glow" cx="0.78" cy="0.18" r="0.6">
-          <stop offset="0%" stopColor="#E60000" stopOpacity="0.22" />
+
+        <radialGradient id="aa-glow" cx="0.72" cy="0.34" r="0.55">
+          <stop offset="0%" stopColor="#E60000" stopOpacity="0.28" />
           <stop offset="100%" stopColor="#E60000" stopOpacity="0" />
         </radialGradient>
+
+        {/* Keeps the headline's half of the frame quiet. */}
+        <linearGradient id="aa-fade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#000" stopOpacity="1" />
+          <stop offset="42%" stopColor="#000" stopOpacity="1" />
+          <stop offset="72%" stopColor="#fff" stopOpacity="1" />
+        </linearGradient>
+        <mask id="aa-right">
+          <rect width="1200" height="600" fill="url(#aa-fade)" />
+        </mask>
+
+        <filter id="aa-grain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
       </defs>
 
       <rect width="1200" height="600" fill="url(#aa-glow)" />
 
-      {[0, 1, 2, 3].map((i) => (
-        <path
-          key={i}
-          d={`M-80 ${300 + i * 78} C 300 ${150 + i * 62}, 780 ${120 + i * 58}, 1280 ${250 + i * 40}`}
-          stroke="url(#aa-arc)"
-          strokeWidth={i === 1 ? 1.4 : 0.6}
-          opacity={i === 1 ? 0.9 : 0.4}
-        />
-      ))}
+      {/* Curved graticule — suggests a globe without claiming a geography. */}
+      <g stroke="#E60000" strokeOpacity="0.09" strokeWidth="0.5">
+        {[-140, 0, 140, 280, 420, 560, 700].map((offset) => (
+          <path key={offset} d={`M${540 + offset} -40 Q${660 + offset} 300 ${540 + offset} 640`} />
+        ))}
+        {[80, 190, 300, 410, 520].map((y) => (
+          <path key={y} d={`M-40 ${y} Q600 ${y - 46} 1240 ${y}`} />
+        ))}
+      </g>
 
-      <circle cx="906" cy="171" r="3" fill="#E60000" />
-      <circle cx="906" cy="171" r="9" stroke="#E60000" strokeOpacity="0.4" strokeWidth="0.8" />
+      {/* Route network. */}
+      <g mask="url(#aa-right)">
+        <g stroke="url(#aa-arc)" strokeLinecap="round">
+          {SPOKES.map((spoke, i) => (
+            <path key={i} d={arc(spoke)} strokeWidth={i % 3 === 0 ? 1.5 : 0.9} />
+          ))}
+        </g>
+
+        {SPOKES.map((spoke, i) => (
+          <circle key={i} cx={spoke.x} cy={spoke.y} r="2.2" fill="#FF6B6B" fillOpacity="0.75" />
+        ))}
+
+        <circle cx={HUB.x} cy={HUB.y} r="4" fill="#FF6B6B" />
+        <circle cx={HUB.x} cy={HUB.y} r="11" stroke="#E60000" strokeOpacity="0.5" strokeWidth="0.9" />
+        <circle cx={HUB.x} cy={HUB.y} r="22" stroke="#E60000" strokeOpacity="0.22" strokeWidth="0.7" />
+        <circle cx={HUB.x} cy={HUB.y} r="38" stroke="#E60000" strokeOpacity="0.1" strokeWidth="0.6" />
+      </g>
+
+      {/* Film grain, so the flat gradient does not band on wide screens. */}
+      <rect width="1200" height="600" filter="url(#aa-grain)" opacity="0.045" />
     </svg>
   );
 }
