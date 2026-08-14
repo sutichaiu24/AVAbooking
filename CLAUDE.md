@@ -35,7 +35,7 @@ Gradients `bg-aa-hero` and `bg-aa-cta` compose the crimson ramp.
 
 ## 🛠️ Tech Stack & Architecture
 
-- **Framework:** Next.js 14 (App Router, React 18, TypeScript strict)
+- **Framework:** Next.js 16 (App Router, React 19, TypeScript strict)
 - **Styling:** Tailwind CSS 3.4 with the Crimson theme
 - **Icons:** Lucide React
 - **QR:** `qrcode` — renders a spec-compliant EMVCo payload built in-repo

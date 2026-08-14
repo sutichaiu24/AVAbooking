@@ -174,7 +174,7 @@ function Confirmed({
   method: PaymentMethodId | null;
   provider?: string;
   onClose: () => void;
-  closeRef: React.RefObject<HTMLButtonElement>;
+  closeRef: React.RefObject<HTMLButtonElement | null>;
 }) {
   const { flight, quote, settlement, pss } = booking;
   const methodSpec = method ? findMethod(method) : undefined;

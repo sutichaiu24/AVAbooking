@@ -26,40 +26,61 @@ export function PromptPayPane({ amount, onSettled }: Props) {
   const [intent, setIntent] = useState<PaymentIntent | null>(null);
   const [status, setStatus] = useState<PaymentIntentStatus>("PENDING");
   const [secondsLeft, setSecondsLeft] = useState<number | null>(null);
-  const [creating, setCreating] = useState(false);
+  const [creating, setCreating] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  /** Bumped by the retry button to re-run the effect below. */
+  const [reloadKey, setReloadKey] = useState(0);
 
   // Guards the hand-off so a late poll can't fire it twice.
   const settledRef = useRef(false);
 
-  const createIntent = useCallback(async () => {
-    setCreating(true);
-    setError(null);
-    setStatus("PENDING");
+  /**
+   * Issues a QR as soon as the pane opens, and re-issues if the total changes
+   * or the passenger asks for a fresh code. The effect owns every fetch, so a
+   * response that arrives after the amount changed is discarded rather than
+   * overwriting the newer intent.
+   */
+  useEffect(() => {
+    let cancelled = false;
     settledRef.current = false;
 
-    try {
-      const response = await fetch("/api/payments/promptpay", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount }),
-      });
-      if (!response.ok) throw new Error("intent");
+    (async () => {
+      try {
+        const response = await fetch("/api/payments/promptpay", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount }),
+        });
+        if (!response.ok) throw new Error("intent");
 
-      const created: PaymentIntent = await response.json();
-      setIntent(created);
-      setSecondsLeft(Math.max(0, Math.floor((Date.parse(created.expiresAt) - Date.now()) / 1000)));
-    } catch {
-      setError("ไม่สามารถสร้างรหัส QR ได้ กรุณาลองใหม่อีกครั้ง");
-    } finally {
-      setCreating(false);
-    }
-  }, [amount]);
+        const created: PaymentIntent = await response.json();
+        if (cancelled) return;
 
-  // Issue a QR as soon as the pane opens, and re-issue if the total changes.
-  useEffect(() => {
-    void createIntent();
-  }, [createIntent]);
+        setIntent(created);
+        setStatus("PENDING");
+        setSecondsLeft(
+          Math.max(0, Math.floor((Date.parse(created.expiresAt) - Date.now()) / 1000)),
+        );
+      } catch {
+        if (!cancelled) setError("ไม่สามารถสร้างรหัส QR ได้ กรุณาลองใหม่อีกครั้ง");
+      } finally {
+        if (!cancelled) setCreating(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [amount, reloadKey]);
+
+  /** Discards the current code and asks the effect for a new one. */
+  const requestNewCode = useCallback(() => {
+    setError(null);
+    setIntent(null);
+    setStatus("PENDING");
+    setCreating(true);
+    setReloadKey((key) => key + 1);
+  }, []);
 
   // Local countdown.
   useEffect(() => {
@@ -107,7 +128,7 @@ export function PromptPayPane({ amount, onSettled }: Props) {
     return (
       <div className="p-5">
         <p className="text-sm font-semibold text-aa-red">{error}</p>
-        <button type="button" className="aa-btn-ghost mt-3" onClick={() => void createIntent()}>
+        <button type="button" className="aa-btn-ghost mt-3" onClick={requestNewCode}>
           <RefreshCw className="h-4 w-4" aria-hidden />
           ลองใหม่
         </button>
@@ -183,7 +204,7 @@ export function PromptPayPane({ amount, onSettled }: Props) {
           <button
             type="button"
             className="aa-btn-primary mt-3 w-full"
-            onClick={() => void createIntent()}
+            onClick={requestNewCode}
           >
             <RefreshCw className="h-4 w-4" aria-hidden />
             สร้างรหัส QR ใหม่

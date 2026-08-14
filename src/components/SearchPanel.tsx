@@ -16,7 +16,7 @@ interface Props {
 }
 
 export function SearchPanel({ query, onChange, onSubmit, loading, error }: Props) {
-  const today = useMemo(bangkokToday, []);
+  const today = useMemo(() => bangkokToday(), []);
 
   // Only offer destinations that the network actually serves from the origin.
   const destinations = useMemo(() => {

@@ -13,7 +13,7 @@ npm install
 npm run dev     # http://localhost:3000
 ```
 
-Requires Node 18.17+. See [`CLAUDE.md`](./CLAUDE.md) for the full module and
+Requires Node 20.9+ (Next.js 16). See [`CLAUDE.md`](./CLAUDE.md) for the full module and
 architecture breakdown.
 
 ---
@@ -76,7 +76,8 @@ breakdown itself.
 
 ## Verification performed
 
-- `npm run build`, `npm run typecheck` and `npm run lint` all pass clean.
+- `npm run build`, `npm run typecheck` and `npm run lint` all pass clean, and
+  `npm audit` reports zero vulnerabilities.
 - The CRC-16/CCITT-FALSE implementation matches the standard `0x29B1` check value.
 - Generated PromptPay payloads round-trip through an independent TLV parser with a
   valid checksum.
