@@ -1,14 +1,34 @@
 import { MERCHANT } from "@/lib/network";
 
 /**
- * Full-bleed hero. Photography would sit here on the production site; in its
- * place is a drawn backdrop — a deep crimson field crossed by a great-circle
- * route arc — which keeps the page self-contained and stays quiet enough for
- * the booking panel to sit on top of it.
+ * Optional hero photograph, served from `public/`.
+ *
+ * Painted as a CSS background rather than an <Image> so the page degrades
+ * cleanly when the file is absent: the crimson gradient and the drawn route
+ * network below simply show through, which is exactly the previous design.
+ * Drop a file at this path to switch the hero over to photography.
  */
+const HERO_PHOTO = "/hero.webp";
+
 export function SiteHeader() {
   return (
     <header className="relative isolate overflow-hidden bg-aa-hero text-white">
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-30 bg-cover bg-center"
+        style={{ backgroundImage: `url(${HERO_PHOTO})` }}
+      />
+      {/* Guarantees headline contrast whatever the photograph does: heavy on
+          the text column, opening up toward the right where the frame is. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-20"
+        style={{
+          backgroundImage:
+            "linear-gradient(100deg, rgba(36,6,6,0.97) 0%, rgba(36,6,6,0.9) 32%, rgba(36,6,6,0.55) 60%, rgba(36,6,6,0.3) 100%), linear-gradient(to bottom, rgba(36,6,6,0.55) 0%, rgba(36,6,6,0) 30%, rgba(36,6,6,0.7) 100%)",
+        }}
+      />
+
       <RouteBackdrop />
 
       <div className="relative mx-auto max-w-6xl px-6 pb-32 pt-20 sm:pt-28 lg:pb-40">
@@ -87,7 +107,7 @@ function RouteBackdrop() {
   return (
     <svg
       aria-hidden
-      className="pointer-events-none absolute inset-0 -z-10 h-full w-full"
+      className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-80"
       preserveAspectRatio="xMidYMid slice"
       viewBox="0 0 1200 600"
       fill="none"
